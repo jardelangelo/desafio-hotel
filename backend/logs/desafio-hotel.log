@@ -1,0 +1,176 @@
+2026-02-03 23:13:55.330 INFO  [main] b.c.j.d.DesafioHotelApplicationTests requestId= - Starting DesafioHotelApplicationTests using Java 25.0.1 with PID 7188 (started by jarde in C:\Git\desafio-hotel\backend)
+2026-02-03 23:13:55.336 INFO  [main] b.c.j.d.DesafioHotelApplicationTests requestId= - No active profile set, falling back to 1 default profile: "default"
+2026-02-03 23:13:56.790 INFO  [main] c.z.h.HikariDataSource requestId= - HikariPool-1 - Starting...
+2026-02-03 23:13:56.922 INFO  [main] c.z.h.p.HikariPool requestId= - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2026-02-03 23:13:56.923 INFO  [main] c.z.h.HikariDataSource requestId= - HikariPool-1 - Start completed.
+2026-02-03 23:13:58.790 INFO  [main] b.c.j.d.DesafioHotelApplicationTests requestId= - Started DesafioHotelApplicationTests in 3.755 seconds (process running for 4.722)
+2026-02-03 23:13:59.130 INFO  [SpringApplicationShutdownHook] c.z.h.HikariDataSource requestId= - HikariPool-1 - Shutdown initiated...
+2026-02-03 23:13:59.131 INFO  [SpringApplicationShutdownHook] c.z.h.HikariDataSource requestId= - HikariPool-1 - Shutdown completed.
+2026-02-03 23:14:23.127 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - Starting DesafioHotelApplication using Java 25.0.1 with PID 13448 (C:\Git\desafio-hotel\backend\target\classes started by jarde in C:\Git\desafio-hotel\backend)
+2026-02-03 23:14:23.132 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - No active profile set, falling back to 1 default profile: "default"
+2026-02-03 23:14:24.112 INFO  [restartedMain] o.a.c.h.Http11NioProtocol requestId= - Initializing ProtocolHandler ["http-nio-8080"]
+2026-02-03 23:14:24.114 INFO  [restartedMain] o.a.c.c.StandardService requestId= - Starting service [Tomcat]
+2026-02-03 23:14:24.114 INFO  [restartedMain] o.a.c.c.StandardEngine requestId= - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-03 23:14:24.394 INFO  [restartedMain] c.z.h.HikariDataSource requestId= - HikariPool-1 - Starting...
+2026-02-03 23:14:24.485 INFO  [restartedMain] c.z.h.p.HikariPool requestId= - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@48222f38
+2026-02-03 23:14:24.486 INFO  [restartedMain] c.z.h.HikariDataSource requestId= - HikariPool-1 - Start completed.
+2026-02-03 23:14:24.504 INFO  [restartedMain] o.f.c.FlywayExecutor requestId= - Database: jdbc:postgresql://localhost:5432/hotel (PostgreSQL 16.11)
+2026-02-03 23:14:24.537 INFO  [restartedMain] o.f.c.i.c.DbValidate requestId= - Successfully validated 1 migration (execution time 00:00.015s)
+2026-02-03 23:14:24.564 INFO  [restartedMain] o.f.c.i.c.DbMigrate requestId= - Current version of schema "public": 1
+2026-02-03 23:14:24.566 INFO  [restartedMain] o.f.c.i.c.DbMigrate requestId= - Schema "public" is up to date. No migration necessary.
+2026-02-03 23:14:26.345 INFO  [restartedMain] o.a.c.h.Http11NioProtocol requestId= - Starting ProtocolHandler ["http-nio-8080"]
+2026-02-03 23:14:26.360 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - Started DesafioHotelApplication in 3.55 seconds (process running for 3.981)
+2026-02-03 23:14:35.782 INFO  [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/] requestId= - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-03 23:14:35.920 INFO  [http-nio-8080-exec-2] b.c.j.d.i.l.FiltroLogRequisicao requestId=773934fb-a079-4810-b4d0-7ad603d95508 - HTTP GET /api/hospedes -> 200 (125 ms)
+2026-02-03 23:17:50.667 INFO  [main] b.c.j.d.DesafioHotelApplicationTests requestId= - Starting DesafioHotelApplicationTests using Java 25.0.1 with PID 13296 (started by jarde in C:\Git\desafio-hotel\backend)
+2026-02-03 23:17:50.674 INFO  [main] b.c.j.d.DesafioHotelApplicationTests requestId= - No active profile set, falling back to 1 default profile: "default"
+2026-02-03 23:17:52.114 INFO  [main] c.z.h.HikariDataSource requestId= - HikariPool-1 - Starting...
+2026-02-03 23:17:52.236 INFO  [main] c.z.h.p.HikariPool requestId= - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2026-02-03 23:17:52.237 INFO  [main] c.z.h.HikariDataSource requestId= - HikariPool-1 - Start completed.
+2026-02-03 23:17:54.157 INFO  [main] b.c.j.d.DesafioHotelApplicationTests requestId= - Started DesafioHotelApplicationTests in 3.769 seconds (process running for 4.715)
+2026-02-03 23:17:54.490 INFO  [SpringApplicationShutdownHook] c.z.h.HikariDataSource requestId= - HikariPool-1 - Shutdown initiated...
+2026-02-03 23:17:54.492 INFO  [SpringApplicationShutdownHook] c.z.h.HikariDataSource requestId= - HikariPool-1 - Shutdown completed.
+2026-02-03 23:18:01.678 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - Starting DesafioHotelApplication using Java 25.0.1 with PID 11288 (C:\Git\desafio-hotel\backend\target\classes started by jarde in C:\Git\desafio-hotel\backend)
+2026-02-03 23:18:01.683 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - No active profile set, falling back to 1 default profile: "default"
+2026-02-03 23:18:02.635 INFO  [restartedMain] o.a.c.h.Http11NioProtocol requestId= - Initializing ProtocolHandler ["http-nio-8080"]
+2026-02-03 23:18:02.637 INFO  [restartedMain] o.a.c.c.StandardService requestId= - Starting service [Tomcat]
+2026-02-03 23:18:02.637 INFO  [restartedMain] o.a.c.c.StandardEngine requestId= - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-03 23:18:02.927 INFO  [restartedMain] c.z.h.HikariDataSource requestId= - HikariPool-1 - Starting...
+2026-02-03 23:18:03.023 INFO  [restartedMain] c.z.h.p.HikariPool requestId= - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@315ba15a
+2026-02-03 23:18:03.024 INFO  [restartedMain] c.z.h.HikariDataSource requestId= - HikariPool-1 - Start completed.
+2026-02-03 23:18:03.044 INFO  [restartedMain] o.f.c.FlywayExecutor requestId= - Database: jdbc:postgresql://localhost:5432/hotel (PostgreSQL 16.11)
+2026-02-03 23:18:03.080 INFO  [restartedMain] o.f.c.i.c.DbValidate requestId= - Successfully validated 1 migration (execution time 00:00.015s)
+2026-02-03 23:18:03.106 INFO  [restartedMain] o.f.c.i.c.DbMigrate requestId= - Current version of schema "public": 1
+2026-02-03 23:18:03.109 INFO  [restartedMain] o.f.c.i.c.DbMigrate requestId= - Schema "public" is up to date. No migration necessary.
+2026-02-03 23:18:04.876 INFO  [restartedMain] o.a.c.h.Http11NioProtocol requestId= - Starting ProtocolHandler ["http-nio-8080"]
+2026-02-03 23:18:04.891 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - Started DesafioHotelApplication in 3.532 seconds (process running for 3.949)
+2026-02-03 23:18:44.970 INFO  [http-nio-8080-exec-7] o.a.c.c.C.[.[.[/] requestId= - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-03 23:18:45.114 INFO  [http-nio-8080-exec-7] b.c.j.d.i.l.FiltroLogRequisicao requestId=8d0f6126-0938-410b-b922-73e8c5b09754 - HTTP GET /api/hospedes -> 200 (133 ms)
+2026-02-03 23:18:48.058 INFO  [http-nio-8080-exec-3] b.c.j.d.i.l.FiltroLogRequisicao requestId=62d1b12e-653f-48a5-8edf-9b131fcb7d3a - HTTP GET /api/hospedes/1 -> 200 (21 ms)
+2026-02-03 23:18:52.846 WARN  [http-nio-8080-exec-5] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver requestId=7a59cabc-dd12-4982-961f-7ec0eb4e9e36 - Resolved [java.lang.IllegalArgumentException: hospede nao encontrado]
+2026-02-03 23:18:52.847 INFO  [http-nio-8080-exec-5] b.c.j.d.i.l.FiltroLogRequisicao requestId=7a59cabc-dd12-4982-961f-7ec0eb4e9e36 - HTTP GET /api/hospedes/99999 -> 400 (11 ms)
+2026-02-03 23:23:15.459 INFO  [main] b.c.j.d.DesafioHotelApplicationTests requestId= - Starting DesafioHotelApplicationTests using Java 25.0.1 with PID 1128 (started by jarde in C:\Git\desafio-hotel\backend)
+2026-02-03 23:23:15.466 INFO  [main] b.c.j.d.DesafioHotelApplicationTests requestId= - No active profile set, falling back to 1 default profile: "default"
+2026-02-03 23:23:16.894 INFO  [main] c.z.h.HikariDataSource requestId= - HikariPool-1 - Starting...
+2026-02-03 23:23:17.021 INFO  [main] c.z.h.p.HikariPool requestId= - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2026-02-03 23:23:17.022 INFO  [main] c.z.h.HikariDataSource requestId= - HikariPool-1 - Start completed.
+2026-02-03 23:23:18.839 INFO  [main] b.c.j.d.DesafioHotelApplicationTests requestId= - Started DesafioHotelApplicationTests in 3.675 seconds (process running for 4.64)
+2026-02-03 23:23:19.203 INFO  [SpringApplicationShutdownHook] c.z.h.HikariDataSource requestId= - HikariPool-1 - Shutdown initiated...
+2026-02-03 23:23:19.205 INFO  [SpringApplicationShutdownHook] c.z.h.HikariDataSource requestId= - HikariPool-1 - Shutdown completed.
+2026-02-03 23:23:27.258 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - Starting DesafioHotelApplication using Java 25.0.1 with PID 22192 (C:\Git\desafio-hotel\backend\target\classes started by jarde in C:\Git\desafio-hotel\backend)
+2026-02-03 23:23:27.265 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - No active profile set, falling back to 1 default profile: "default"
+2026-02-03 23:23:28.433 INFO  [restartedMain] o.a.c.h.Http11NioProtocol requestId= - Initializing ProtocolHandler ["http-nio-8080"]
+2026-02-03 23:23:28.434 INFO  [restartedMain] o.a.c.c.StandardService requestId= - Starting service [Tomcat]
+2026-02-03 23:23:28.434 INFO  [restartedMain] o.a.c.c.StandardEngine requestId= - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-03 23:23:28.726 INFO  [restartedMain] c.z.h.HikariDataSource requestId= - HikariPool-1 - Starting...
+2026-02-03 23:23:28.825 INFO  [restartedMain] c.z.h.p.HikariPool requestId= - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@48222f38
+2026-02-03 23:23:28.826 INFO  [restartedMain] c.z.h.HikariDataSource requestId= - HikariPool-1 - Start completed.
+2026-02-03 23:23:28.844 INFO  [restartedMain] o.f.c.FlywayExecutor requestId= - Database: jdbc:postgresql://localhost:5432/hotel (PostgreSQL 16.11)
+2026-02-03 23:23:28.880 INFO  [restartedMain] o.f.c.i.c.DbValidate requestId= - Successfully validated 1 migration (execution time 00:00.016s)
+2026-02-03 23:23:28.908 INFO  [restartedMain] o.f.c.i.c.DbMigrate requestId= - Current version of schema "public": 1
+2026-02-03 23:23:28.911 INFO  [restartedMain] o.f.c.i.c.DbMigrate requestId= - Schema "public" is up to date. No migration necessary.
+2026-02-03 23:23:30.682 INFO  [restartedMain] o.a.c.h.Http11NioProtocol requestId= - Starting ProtocolHandler ["http-nio-8080"]
+2026-02-03 23:23:30.698 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - Started DesafioHotelApplication in 3.771 seconds (process running for 4.215)
+2026-02-03 23:24:36.909 INFO  [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/] requestId= - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-03 23:24:37.028 WARN  [http-nio-8080-exec-1] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver requestId=7ead2d6f-579c-4cc6-8cd1-9efa848a9a43 - Resolved [br.com.jardel.desafio_hotel.api.erro.NaoEncontradoException: hospede nao encontrado]
+2026-02-03 23:24:37.028 INFO  [http-nio-8080-exec-1] b.c.j.d.i.l.FiltroLogRequisicao requestId=7ead2d6f-579c-4cc6-8cd1-9efa848a9a43 - HTTP GET /api/hospedes/99999 -> 404 (108 ms)
+2026-02-03 23:27:27.530 INFO  [http-nio-8080-exec-5] b.c.j.d.i.l.FiltroLogRequisicao requestId=95374baf-97d4-475c-a143-4d3fa009c435 - HTTP GET /api/hospedes/1 -> 200 (14 ms)
+2026-02-03 23:33:16.368 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - Starting DesafioHotelApplication using Java 25.0.1 with PID 17732 (C:\Git\desafio-hotel\backend\target\classes started by jarde in C:\Git\desafio-hotel\backend)
+2026-02-03 23:33:16.376 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - No active profile set, falling back to 1 default profile: "default"
+2026-02-03 23:33:17.380 INFO  [restartedMain] o.a.c.h.Http11NioProtocol requestId= - Initializing ProtocolHandler ["http-nio-8080"]
+2026-02-03 23:33:17.381 INFO  [restartedMain] o.a.c.c.StandardService requestId= - Starting service [Tomcat]
+2026-02-03 23:33:17.382 INFO  [restartedMain] o.a.c.c.StandardEngine requestId= - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-03 23:33:17.670 INFO  [restartedMain] c.z.h.HikariDataSource requestId= - HikariPool-1 - Starting...
+2026-02-03 23:33:17.766 INFO  [restartedMain] c.z.h.p.HikariPool requestId= - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4ee33b7c
+2026-02-03 23:33:17.768 INFO  [restartedMain] c.z.h.HikariDataSource requestId= - HikariPool-1 - Start completed.
+2026-02-03 23:33:17.785 INFO  [restartedMain] o.f.c.FlywayExecutor requestId= - Database: jdbc:postgresql://localhost:5432/hotel (PostgreSQL 16.11)
+2026-02-03 23:33:17.820 INFO  [restartedMain] o.f.c.i.c.DbValidate requestId= - Successfully validated 1 migration (execution time 00:00.016s)
+2026-02-03 23:33:17.847 INFO  [restartedMain] o.f.c.i.c.DbMigrate requestId= - Current version of schema "public": 1
+2026-02-03 23:33:17.849 INFO  [restartedMain] o.f.c.i.c.DbMigrate requestId= - Schema "public" is up to date. No migration necessary.
+2026-02-03 23:33:19.656 INFO  [restartedMain] o.a.c.h.Http11NioProtocol requestId= - Starting ProtocolHandler ["http-nio-8080"]
+2026-02-03 23:33:19.671 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - Started DesafioHotelApplication in 3.642 seconds (process running for 4.072)
+2026-02-03 23:33:47.373 INFO  [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/] requestId= - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-03 23:33:47.520 INFO  [http-nio-8080-exec-2] b.c.j.d.i.l.FiltroLogRequisicao requestId=e14d2b7a-3fe4-43dd-b614-de07dcd92831 - HTTP GET /api/checkins/presentes -> 200 (138 ms)
+2026-02-03 23:33:57.140 INFO  [http-nio-8080-exec-3] b.c.j.d.i.l.FiltroLogRequisicao requestId=1d7ced0f-fe54-4958-a4f8-f2e83e2a10bd - HTTP GET /api/checkins/presentes -> 200 (6 ms)
+2026-02-03 23:33:59.830 INFO  [http-nio-8080-exec-4] b.c.j.d.i.l.FiltroLogRequisicao requestId=d3e9d232-86f2-4922-ab4d-9312b9780763 - HTTP GET /api/checkins/ausentes -> 200 (50 ms)
+2026-02-03 23:42:02.679 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - Starting DesafioHotelApplication using Java 25.0.1 with PID 15220 (C:\Git\desafio-hotel\backend\target\classes started by jarde in C:\Git\desafio-hotel\backend)
+2026-02-03 23:42:02.686 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - No active profile set, falling back to 1 default profile: "default"
+2026-02-03 23:42:03.660 INFO  [restartedMain] o.a.c.h.Http11NioProtocol requestId= - Initializing ProtocolHandler ["http-nio-8080"]
+2026-02-03 23:42:03.661 INFO  [restartedMain] o.a.c.c.StandardService requestId= - Starting service [Tomcat]
+2026-02-03 23:42:03.661 INFO  [restartedMain] o.a.c.c.StandardEngine requestId= - Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-03 23:42:03.951 INFO  [restartedMain] c.z.h.HikariDataSource requestId= - HikariPool-1 - Starting...
+2026-02-03 23:42:04.049 INFO  [restartedMain] c.z.h.p.HikariPool requestId= - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4ee33b7c
+2026-02-03 23:42:04.050 INFO  [restartedMain] c.z.h.HikariDataSource requestId= - HikariPool-1 - Start completed.
+2026-02-03 23:42:04.069 INFO  [restartedMain] o.f.c.FlywayExecutor requestId= - Database: jdbc:postgresql://localhost:5432/hotel (PostgreSQL 16.11)
+2026-02-03 23:42:04.109 INFO  [restartedMain] o.f.c.i.c.DbValidate requestId= - Successfully validated 1 migration (execution time 00:00.018s)
+2026-02-03 23:42:04.138 INFO  [restartedMain] o.f.c.i.c.DbMigrate requestId= - Current version of schema "public": 1
+2026-02-03 23:42:04.141 INFO  [restartedMain] o.f.c.i.c.DbMigrate requestId= - Schema "public" is up to date. No migration necessary.
+2026-02-03 23:42:05.923 INFO  [restartedMain] o.a.c.h.Http11NioProtocol requestId= - Starting ProtocolHandler ["http-nio-8080"]
+2026-02-03 23:42:05.941 INFO  [restartedMain] b.c.j.d.DesafioHotelApplication requestId= - Started DesafioHotelApplication in 3.573 seconds (process running for 4.003)
+2026-02-03 23:42:42.932 INFO  [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/] requestId= - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-03 23:42:43.166 INFO  [http-nio-8080-exec-2] b.c.j.d.i.l.FiltroLogRequisicao requestId=06121d12-52f3-4dd4-a635-f1a9dd14b963 - HTTP POST /api/hospedes -> 201 (222 ms)
+2026-02-03 23:42:46.927 INFO  [http-nio-8080-exec-3] b.c.j.d.i.l.FiltroLogRequisicao requestId=12295f7f-7732-43f7-b9fe-eb388376f244 - HTTP GET /api/checkins/ausentes -> 200 (27 ms)
+2026-02-03 23:42:49.243 INFO  [http-nio-8080-exec-6] b.c.j.d.i.l.FiltroLogRequisicao requestId=2f17edd3-81fc-446c-ad8e-2e4cf70f9cb3 - HTTP GET /api/checkins/presentes -> 200 (7 ms)
+2026-02-03 23:42:53.304 INFO  [http-nio-8080-exec-5] b.c.j.d.i.l.FiltroLogRequisicao requestId=9491db1b-a2f8-4235-8997-3115b77dfff2 - HTTP GET /api/hospedes/1 -> 200 (6 ms)
+2026-02-03 23:43:00.156 INFO  [http-nio-8080-exec-4] b.c.j.d.i.l.FiltroLogRequisicao requestId=d4642bdc-e393-4415-97e3-e4ba3f932e16 - HTTP GET /api/hospedes -> 200 (17 ms)
+2026-02-03 23:43:39.111 INFO  [http-nio-8080-exec-7] b.c.j.d.i.l.FiltroLogRequisicao requestId=6aec97ca-25f8-40ee-a6c7-3c71995fc8ac - HTTP POST /api/checkins -> 201 (23 ms)
+2026-02-03 23:44:11.362 INFO  [http-nio-8080-exec-8] b.c.j.d.i.l.FiltroLogRequisicao requestId=1fb56f1f-8ad6-435b-a4ca-add63ca0d7ac - HTTP POST /api/checkins -> 201 (15 ms)
+2026-02-03 23:44:23.063 INFO  [http-nio-8080-exec-9] b.c.j.d.i.l.FiltroLogRequisicao requestId=b5580f10-92c5-4614-941c-289cf2fff624 - HTTP POST /api/checkins -> 201 (10 ms)
+2026-02-03 23:44:32.227 INFO  [http-nio-8080-exec-10] b.c.j.d.i.l.FiltroLogRequisicao requestId=a5251ffa-3c08-473d-badf-c76c4eacd09f - HTTP POST /api/checkins -> 201 (10 ms)
+2026-02-03 23:44:40.144 INFO  [http-nio-8080-exec-1] b.c.j.d.i.l.FiltroLogRequisicao requestId=9a9a18d0-5306-4956-b35e-0e159bcfa996 - HTTP GET /api/checkins/presentes -> 200 (5 ms)
+2026-02-03 23:44:53.151 INFO  [http-nio-8080-exec-2] b.c.j.d.i.l.FiltroLogRequisicao requestId=91ed39cc-b87b-41e7-a8f5-438a5f7c66b1 - HTTP GET /api/checkins/ausentes -> 200 (9 ms)
+2026-02-03 23:45:21.242 INFO  [http-nio-8080-exec-3] b.c.j.d.i.l.FiltroLogRequisicao requestId=fa4ad731-852d-4314-8b22-a599d0268005 - HTTP GET /api/hospedes -> 200 (6 ms)
+2026-02-03 23:45:29.751 INFO  [http-nio-8080-exec-6] b.c.j.d.i.l.FiltroLogRequisicao requestId=3b62b54e-fe65-43c8-827c-27b7f2c663a7 - HTTP GET /api/checkins/presentes -> 200 (4 ms)
+2026-02-03 23:45:33.122 ERROR [http-nio-8080-exec-5] b.c.j.d.a.e.ApiExceptionHandler requestId=6cd8e9d7-a12c-4e60-abb9-f09576e857a2 - Erro inesperado na API
+org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported
+	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.handleNoMatch(RequestMappingInfoHandlerMapping.java:260)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lookupHandlerMethod(AbstractHandlerMethodMapping.java:434)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.getHandlerInternal(AbstractHandlerMethodMapping.java:376)
+	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:116)
+	at org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping.getHandlerInternal(RequestMappingInfoHandlerMapping.java:68)
+	at org.springframework.web.servlet.handler.AbstractHandlerMapping.getHandler(AbstractHandlerMapping.java:544)
+	at org.springframework.web.servlet.DispatcherServlet.getHandler(DispatcherServlet.java:1157)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:951)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1003)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at br.com.jardel.desafio_hotel.infraestrutura.log.FiltroLogRequisicao.doFilterInternal(FiltroLogRequisicao.java:44)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.ServerHttpObservationFilter.doFilterInternal(ServerHttpObservationFilter.java:110)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1778)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+2026-02-03 23:45:33.128 WARN  [http-nio-8080-exec-5] o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver requestId=6cd8e9d7-a12c-4e60-abb9-f09576e857a2 - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2026-02-03 23:45:33.128 INFO  [http-nio-8080-exec-5] b.c.j.d.i.l.FiltroLogRequisicao requestId=6cd8e9d7-a12c-4e60-abb9-f09576e857a2 - HTTP GET /api/checkins -> 500 (8 ms)
+2026-02-03 23:45:37.127 INFO  [http-nio-8080-exec-7] b.c.j.d.i.l.FiltroLogRequisicao requestId=2be59248-4ff6-4527-9956-56e3526923cb - HTTP GET /api/checkins/presentes -> 200 (5 ms)
