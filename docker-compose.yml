@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16
+    container_name: hotel_db
+    environment:
+      POSTGRES_DB: hotel
+      POSTGRES_USER: hotel
+      POSTGRES_PASSWORD: hotel
+    ports:
+      - "5432:5432"
+    volumes:
+      - hotel_pgdata:/var/lib/postgresql/data
+
+volumes:
+  hotel_pgdata:
