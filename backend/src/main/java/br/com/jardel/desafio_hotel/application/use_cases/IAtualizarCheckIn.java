@@ -5,16 +5,13 @@
 package br.com.jardel.desafio_hotel.application.use_cases;
 
 import br.com.jardel.desafio_hotel.domain.models.CheckIn;
-import br.com.jardel.desafio_hotel.api.dtos.RealizarCheckInRequest;
+
+import java.time.LocalDateTime;
 
 /**
  *
  * @author jarde
  */
-
-/**
- * Interface segregada para o caso de uso de realizar check-in.
- */
-public interface IRealizarCheckInUseCase extends IUseCase<RealizarCheckInRequest, CheckIn> {
+public interface IAtualizarCheckIn {
     
 }

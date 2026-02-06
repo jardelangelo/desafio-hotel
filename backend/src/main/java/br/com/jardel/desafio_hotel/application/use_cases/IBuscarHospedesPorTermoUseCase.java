@@ -4,17 +4,16 @@
  */
 package br.com.jardel.desafio_hotel.application.use_cases;
 
-import br.com.jardel.desafio_hotel.api.dtos.CadastrarHospedeRequest;
+import br.com.jardel.desafio_hotel.api.dtos.BuscarHospedesPorTermoRequest;
 import br.com.jardel.desafio_hotel.domain.models.Hospede;
+import java.util.List;
 
 /**
  *
  * @author jarde
  */
 
-/**
- * Interface segregada para o caso de uso de cadastro de hóspede.
- */
-public interface ICadastrarHospedeUseCase extends IUseCase<CadastrarHospedeRequest, Hospede> {
-
+/** Buscar hóspedes por termo (nome/documento/telefone). */
+public interface IBuscarHospedesPorTermoUseCase extends IUseCase<BuscarHospedesPorTermoRequest, List<Hospede>> {
+    
 }

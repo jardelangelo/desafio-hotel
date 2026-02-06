@@ -4,6 +4,7 @@
  */
 package br.com.jardel.desafio_hotel.application.use_cases;
 
+import br.com.jardel.desafio_hotel.api.dtos.CadastrarHospedeRequest;
 import br.com.jardel.desafio_hotel.domain.models.Hospede;
 import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
 
@@ -11,24 +12,30 @@ import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
  *
  * @author jarde
  */
-public class CadastrarHospedeUseCase implements ICadastrarHospedeUseCase {
+
+public class CadastrarHospedeUseCase implements ICadastrarHospedeUseCase  {
    
     private final IHospedeRepository hospedeRepositorio;
 
     public CadastrarHospedeUseCase(IHospedeRepository hospedeRepositorio) {
         this.hospedeRepositorio = hospedeRepositorio;
     }
-    
+
     @Override
-    public Hospede execute(String nome, String documento, String telefone) {
+    public Hospede execute(CadastrarHospedeRequest request) {
+        if (request == null) throw new IllegalArgumentException("request obrigatorio");
+
+        String nome = request.nome();
+        String documento = request.documento();
+        String telefone = request.telefone();
+
         if (nome == null || nome.isBlank()) throw new IllegalArgumentException("nome obrigatorio");
         if (documento == null || documento.isBlank()) throw new IllegalArgumentException("documento obrigatorio");
         if (telefone == null || telefone.isBlank()) throw new IllegalArgumentException("telefone obrigatorio");
 
-        // opcional: impedir duplicado por documento
-        hospedeRepositorio.buscarPorDocumento(documento).ifPresent(h ->
-                { throw new IllegalArgumentException("documento ja cadastrado"); }
-        );
+        hospedeRepositorio.buscarPorDocumento(documento).ifPresent(h -> {
+            throw new IllegalArgumentException("documento ja cadastrado");
+        });
 
         Hospede novo = new Hospede(null, nome.trim(), documento.trim(), telefone.trim());
         return hospedeRepositorio.salvar(novo);

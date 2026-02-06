@@ -4,17 +4,16 @@
  */
 package br.com.jardel.desafio_hotel.application.use_cases;
 
-import br.com.jardel.desafio_hotel.api.dtos.CadastrarHospedeRequest;
+import br.com.jardel.desafio_hotel.api.dtos.AtualizarHospedeRequest;
 import br.com.jardel.desafio_hotel.domain.models.Hospede;
+
 
 /**
  *
  * @author jarde
  */
 
-/**
- * Interface segregada para o caso de uso de cadastro de hóspede.
- */
-public interface ICadastrarHospedeUseCase extends IUseCase<CadastrarHospedeRequest, Hospede> {
-
+/** Atualizar dados do hóspede (nome/telefone). */
+public interface IAtualizarHospedeUseCase extends IUseCase<AtualizarHospedeRequest, Hospede> {
+    
 }

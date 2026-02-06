@@ -8,8 +8,7 @@ package br.com.jardel.desafio_hotel.api.dtos;
  *
  * @author jarde
  */
-public record AtualizarHospedeRequest(
-        Long id,
-        String nome,
-        String telefone
-) {}
+
+public record PaginacaoRequest(int page, int size) {
+
+}
