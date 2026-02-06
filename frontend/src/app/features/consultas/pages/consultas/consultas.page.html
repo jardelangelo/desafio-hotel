@@ -1,0 +1,55 @@
+<div class="page">
+  <h1>Consultas</h1>
+
+  <div class="toolbar card">
+    <div class="modes">
+      <button type="button" [class.active]="modo==='presentes'" (click)="changeModo('presentes')">
+        Presentes
+      </button>
+      <button type="button" [class.active]="modo==='ausentes'" (click)="changeModo('ausentes')">
+        Ausentes
+      </button>
+    </div>
+
+    <div class="pager">
+      <button type="button" (click)="prev()" [disabled]="loading || !(data?.hasPrevious)">Previous</button>
+      <span *ngIf="data">Página {{ data.page + 1 }} / {{ data.totalPages || 1 }}</span>
+      <button type="button" (click)="next()" [disabled]="loading || !(data?.hasNext)">Next</button>
+    </div>
+  </div>
+
+  <div class="card" *ngIf="loading">Carregando...</div>
+  <div class="card error" *ngIf="errorMsg">{{ errorMsg }}</div>
+
+  <div class="card" *ngIf="data && !loading">
+    <table>
+      <thead>
+        <tr>
+          <th>Hóspede</th>
+          <th>Documento</th>
+          <th>Telefone</th>
+          <th>Entrada</th>
+          <th>Saída</th>
+          <th>Veículo</th>
+          <th>Total gasto</th>
+          <th>Última hospedagem</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of data.items">
+          <td>{{ i.nome }}</td>
+          <td>{{ i.documento }}</td>
+          <td>{{ i.telefone }}</td>
+          <td>{{ i.dataEntrada }}</td>
+          <td>{{ i.dataSaida }}</td>
+          <td>{{ i.adicionalVeiculo ? 'Sim' : 'Não' }}</td>
+          <td>{{ money(i.valorTotalGasto) }}</td>
+          <td>{{ money(i.valorUltimaHospedagem) }}</td>
+        </tr>
+        <tr *ngIf="data.items.length === 0">
+          <td colspan="8" class="empty">Sem registros</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
