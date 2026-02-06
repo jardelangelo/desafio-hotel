@@ -5,12 +5,18 @@
 package br.com.jardel.desafio_hotel.application.use_cases;
 
 import br.com.jardel.desafio_hotel.application.dtos.GastoHospedeDTO;
-import java.util.List;
+import br.com.jardel.desafio_hotel.api.dtos.PagedResult;
+import br.com.jardel.desafio_hotel.api.dtos.PaginacaoRequest;
 
 /**
  *
  * @author jarde
  */
-public interface IConsultarHospedesAusentesUseCase {
-    List<GastoHospedeDTO> execute();
+
+/**
+ * Interface segregada para consulta de hóspedes ausentes.
+ */
+public interface IConsultarHospedesAusentesUseCase 
+        extends IUseCase<PaginacaoRequest, PagedResult<GastoHospedeDTO>> {
+    
 }

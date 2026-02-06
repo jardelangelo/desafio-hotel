@@ -8,8 +8,8 @@ package br.com.jardel.desafio_hotel.api.dtos;
  *
  * @author jarde
  */
-public record AtualizarHospedeRequest(
-        Long id,
-        String nome,
-        String telefone
-) {}
+
+/** Request vazio para casos de uso sem parâmetros. */
+public record EmptyRequest() {
+    
+}

@@ -8,56 +8,75 @@ import br.com.jardel.desafio_hotel.application.dtos.GastoHospedeDTO;
 import br.com.jardel.desafio_hotel.domain.models.CheckIn;
 import br.com.jardel.desafio_hotel.domain.models.Hospede;
 import br.com.jardel.desafio_hotel.domain.services.ICalculadoraHospedagemService;
+import br.com.jardel.desafio_hotel.domain.repositories.ICheckInRepository;
+import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
+import br.com.jardel.desafio_hotel.api.dtos.EmptyRequest;
 
 import java.math.BigDecimal;
 import java.util.List;
-import br.com.jardel.desafio_hotel.domain.repositories.ICheckInRepository;
-import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
 
 /**
  *
  * @author jarde
  */
+
 public class ConsultarHospedesAusentesUseCase implements IConsultarHospedesAusentesUseCase {
     
     private final IHospedeRepository hospedeRepositorio;
     private final ICheckInRepository checkInRepositorio;
     private final ICalculadoraHospedagemService calculadora;
-    
+
     public ConsultarHospedesAusentesUseCase(IHospedeRepository hospedeRepositorio,
-                                     ICheckInRepository checkInRepositorio,
-                                     ICalculadoraHospedagemService calculadora) {
+                                            ICheckInRepository checkInRepositorio,
+                                            ICalculadoraHospedagemService calculadora) {
         this.hospedeRepositorio = hospedeRepositorio;
         this.checkInRepositorio = checkInRepositorio;
         this.calculadora = calculadora;
     }
-    
+
     @Override
-    public List<GastoHospedeDTO> execute() {
-        return checkInRepositorio.listarAusentes().stream()
-                .map(this::montarGastoHospede)
-                .toList();
+    public br.com.jardel.desafio_hotel.api.dtos.PagedResult<GastoHospedeDTO> execute(
+            br.com.jardel.desafio_hotel.api.dtos.PaginacaoRequest request
+    ) {
+        int page = request.page();
+        int size = request.size();
+
+        long total = checkInRepositorio.contarAusentes();
+        var checkins = checkInRepositorio.listarAusentesPaginado(page, size);
+
+        var items = checkins.stream().map(this::montarGastoHospede).toList();
+        return br.com.jardel.desafio_hotel.api.dtos.PagedResult.of(items, page, size, total);
     }
-    
-    private GastoHospedeDTO montarGastoHospede(CheckIn checkInAtual) {
-        Hospede hospede = hospedeRepositorio.buscarPorId(checkInAtual.idHospede())
+
+    private GastoHospedeDTO montarGastoHospede(CheckIn ultimoCheckIn) {
+        Hospede hospede = hospedeRepositorio.buscarPorId(ultimoCheckIn.idHospede())
                 .orElseThrow(() -> new IllegalStateException("Hospede do check-in nao encontrado"));
 
         List<CheckIn> historico = checkInRepositorio.listarPorHospede(hospede.id());
 
         BigDecimal totalGasto = historico.stream()
-                .map(calculadora::calcularTotalHospedagem)
+                .map(this::valorTotalSeguro)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-        BigDecimal ultimaHospedagem = calculadora.calcularTotalHospedagem(checkInAtual);
+        BigDecimal ultimaHospedagem = valorTotalSeguro(ultimoCheckIn);
 
         return new GastoHospedeDTO(
                 hospede.id(),
                 hospede.nome(),
                 hospede.documento(),
                 hospede.telefone(),
+                ultimoCheckIn.dataEntrada(),
+                ultimoCheckIn.dataSaida(),
+                ultimoCheckIn.adicionalVeiculo(),
                 totalGasto,
                 ultimaHospedagem
+        );
+    }
+
+    private BigDecimal valorTotalSeguro(CheckIn c) {
+        if (c.valorTotal() != null) return c.valorTotal();
+        return calculadora.calcularTotalHospedagem(
+                new CheckIn(c.id(), c.idHospede(), c.dataEntrada(), c.dataSaida(), c.adicionalVeiculo(), null)
         );
     }
     

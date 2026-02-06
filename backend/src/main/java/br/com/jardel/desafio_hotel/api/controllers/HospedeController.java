@@ -11,10 +11,10 @@ import br.com.jardel.desafio_hotel.domain.models.Hospede;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import br.com.jardel.desafio_hotel.api.dtos.AtualizarHospedeRequest;
-import br.com.jardel.desafio_hotel.api.exceptions.NotFoundException;
+import br.com.jardel.desafio_hotel.application.use_cases.*;
+import br.com.jardel.desafio_hotel.api.dtos.*;
 
 import java.util.List;
-import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
 
 /**
  *
@@ -24,60 +24,79 @@ import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
 @RestController
 @RequestMapping("/api/hospedes")
 public class HospedeController {
-    
+
     private final ICadastrarHospedeUseCase cadastrarHospede;
-    private final IHospedeRepository hospedeRepositorio;
-    
+    private final IBuscarHospedePorIdUseCase buscarHospedePorId;
+    private final IListarHospedesUseCase listarHospedes;
+    private final IBuscarHospedesPorTermoUseCase buscarHospedesPorTermo;
+    private final IAtualizarHospedeUseCase atualizarHospede;
+    private final IExcluirHospedeUseCase excluirHospede;
+
     public HospedeController(ICadastrarHospedeUseCase cadastrarHospede,
-                             IHospedeRepository hospedeRepositorio) {
+                             IBuscarHospedePorIdUseCase buscarHospedePorId,
+                             IListarHospedesUseCase listarHospedes,
+                             IBuscarHospedesPorTermoUseCase buscarHospedesPorTermo,
+                             IAtualizarHospedeUseCase atualizarHospede,
+                             IExcluirHospedeUseCase excluirHospede) {
         this.cadastrarHospede = cadastrarHospede;
-        this.hospedeRepositorio = hospedeRepositorio;
+        this.buscarHospedePorId = buscarHospedePorId;
+        this.listarHospedes = listarHospedes;
+        this.buscarHospedesPorTermo = buscarHospedesPorTermo;
+        this.atualizarHospede = atualizarHospede;
+        this.excluirHospede = excluirHospede;
     }
-    
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public HospedeResponse cadastrar(@RequestBody CadastrarHospedeRequest req) {
-        Hospede salvo = cadastrarHospede.execute(req.nome(), req.documento(), req.telefone());
+        Hospede salvo = cadastrarHospede.execute(
+                new br.com.jardel.desafio_hotel.api.dtos.CadastrarHospedeRequest(
+                        req.nome(), req.documento(), req.telefone()
+                )
+        );
         return toResponse(salvo);
     }
 
     @GetMapping("/{id}")
     public HospedeResponse buscarPorId(@PathVariable Long id) {
-        Hospede hospede = hospedeRepositorio.buscarPorId(id)
-                .orElseThrow(() -> new NotFoundException("hospede nao encontrado"));
+        Hospede hospede = buscarHospedePorId.execute(
+                new br.com.jardel.desafio_hotel.api.dtos.BuscarHospedePorIdRequest(id)
+        );
         return toResponse(hospede);
     }
 
     @GetMapping
     public List<HospedeResponse> listar() {
-        return hospedeRepositorio.listarTodos().stream().map(this::toResponse).toList();
+        return listarHospedes.execute(new EmptyRequest()).stream()
+                .map(this::toResponse)
+                .toList();
     }
-    
+
     @GetMapping("/buscar")
     public List<HospedeResponse> buscar(@RequestParam String termo) {
-        return hospedeRepositorio.buscarPorTermo(termo).stream().map(this::toResponse).toList();
+        return buscarHospedesPorTermo.execute(
+                new br.com.jardel.desafio_hotel.api.dtos.BuscarHospedesPorTermoRequest(termo)
+        ).stream().map(this::toResponse).toList();
+    }
+
+    @PutMapping("/{id}")
+    public HospedeResponse atualizar(@PathVariable Long id, @RequestBody AtualizarHospedeRequest req) {
+        Hospede salvo = atualizarHospede.execute(
+                new br.com.jardel.desafio_hotel.api.dtos.AtualizarHospedeRequest(
+                        id, req.nome(), req.telefone()
+                )
+        );
+        return toResponse(salvo);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void excluir(@PathVariable Long id) {
-        hospedeRepositorio.excluirPorId(id);
+        excluirHospede.execute(
+                new br.com.jardel.desafio_hotel.api.dtos.ExcluirHospedeRequest(id)
+        );
     }
 
-    @PutMapping("/{id}")
-    public HospedeResponse atualizar(@PathVariable Long id, @RequestBody AtualizarHospedeRequest req) {
-        Hospede atual = hospedeRepositorio.buscarPorId(id)
-                .orElseThrow(() -> new NotFoundException("hospede nao encontrado"));
-
-        String nome = (req.nome() == null || req.nome().isBlank()) ? atual.nome() : req.nome().trim();
-        String telefone = (req.telefone() == null || req.telefone().isBlank()) ? atual.telefone() : req.telefone().trim();
-
-        Hospede atualizado = new Hospede(atual.id(), nome, atual.documento(), telefone);
-        Hospede salvo = hospedeRepositorio.salvar(atualizado);
-
-        return toResponse(salvo);
-    }
-    
     private HospedeResponse toResponse(Hospede h) {
         return new HospedeResponse(h.id(), h.nome(), h.documento(), h.telefone());
     }

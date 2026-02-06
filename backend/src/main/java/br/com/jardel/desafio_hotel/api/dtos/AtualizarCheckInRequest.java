@@ -2,23 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package br.com.jardel.desafio_hotel.application.dtos;
+package br.com.jardel.desafio_hotel.api.dtos;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author jarde
  */
-public record GastoHospedeDTO(
-        Long idHospede,
-        String nome,
-        String documento,
-        String telefone,
+
+public record AtualizarCheckInRequest(
+        Long id,
         LocalDateTime dataEntrada,
         LocalDateTime dataSaida,
-        boolean adicionalVeiculo,
-        BigDecimal valorTotalGasto,
-        BigDecimal valorUltimaHospedagem
+        Boolean adicionalVeiculo
 ) {}

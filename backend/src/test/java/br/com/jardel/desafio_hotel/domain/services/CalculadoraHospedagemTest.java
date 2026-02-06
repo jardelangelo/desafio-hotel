@@ -34,7 +34,8 @@ public class CalculadoraHospedagemTest {
                 null, 1L,
                 LocalDateTime.of(2026, 2, 2, 10, 0),  // segunda
                 LocalDateTime.of(2026, 2, 2, 12, 0),
-                false
+                false,
+                null
         );
 
         BigDecimal total = calculadora.calcularTotalHospedagem(checkIn);
@@ -47,7 +48,8 @@ public class CalculadoraHospedagemTest {
                 null, 1L,
                 LocalDateTime.of(2026, 2, 2, 10, 0),  // segunda
                 LocalDateTime.of(2026, 2, 2, 17, 0),  // após 16:30
-                false
+                false,
+                null
         );
 
         BigDecimal total = calculadora.calcularTotalHospedagem(checkIn);
@@ -60,7 +62,8 @@ public class CalculadoraHospedagemTest {
                 null, 1L,
                 LocalDateTime.of(2026, 2, 7, 10, 0),  // sábado
                 LocalDateTime.of(2026, 2, 7, 12, 0),
-                true
+                true,
+                null
         );
 
         BigDecimal total = calculadora.calcularTotalHospedagem(checkIn);

@@ -4,17 +4,14 @@
  */
 package br.com.jardel.desafio_hotel.application.use_cases;
 
-import br.com.jardel.desafio_hotel.domain.models.CheckIn;
-import br.com.jardel.desafio_hotel.api.dtos.RealizarCheckInRequest;
+import br.com.jardel.desafio_hotel.api.dtos.ExcluirHospedeRequest;
 
 /**
  *
  * @author jarde
  */
 
-/**
- * Interface segregada para o caso de uso de realizar check-in.
- */
-public interface IRealizarCheckInUseCase extends IUseCase<RealizarCheckInRequest, CheckIn> {
+/** Excluir hóspede por id. */
+public interface IExcluirHospedeUseCase extends IUseCase<ExcluirHospedeRequest, Void> {
     
 }
