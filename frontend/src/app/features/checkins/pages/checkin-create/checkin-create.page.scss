@@ -1,0 +1,35 @@
+.page { padding: 16px; max-width: 900px; margin: 0 auto; }
+.card { background: #fff; border: 1px solid #e6e6e6; border-radius: 12px; padding: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.inline { flex-direction: row; align-items: center; gap: 10px; }
+.actions { display: flex; justify-content: flex-end; }
+.error { margin-top: 12px; color: #b00020; }
+.result { margin-top: 12px; background: #f7f7f7; padding: 12px; border-radius: 8px; overflow: auto; }
+
+.suggestions {
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+
+  button {
+    width: 100%;
+    text-align: left;
+    padding: 10px 12px;
+    border: 0;
+    background: #fff;
+    cursor: pointer;
+
+    &:hover { background: #f5f5f5; }
+
+    span { display: block; opacity: .75; font-size: 12px; margin-top: 2px; }
+  }
+}
+
+.selected { margin-top: 8px; font-size: 14px; }
+.hint { font-size: 12px; opacity: .7; }
+
+@media (max-width: 700px) {
+  .grid { grid-template-columns: 1fr; }
+}

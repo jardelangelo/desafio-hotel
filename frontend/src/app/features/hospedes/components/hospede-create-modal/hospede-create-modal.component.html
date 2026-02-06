@@ -1,0 +1,32 @@
+<div class="overlay" *ngIf="open" (click)="close()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal__head">
+      <div class="title">Incluir pessoa</div>
+      <button class="x" type="button" (click)="close()">×</button>
+    </div>
+
+    <div class="modal__body">
+      <div class="field">
+        <label>Nome</label>
+        <input [formControl]="form.controls.nome" />
+      </div>
+      <div class="field">
+        <label>Documento</label>
+        <input [formControl]="form.controls.documento" />
+      </div>
+      <div class="field">
+        <label>Telefone</label>
+        <input [formControl]="form.controls.telefone" />
+      </div>
+
+      <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+    </div>
+
+    <div class="modal__foot">
+      <button class="btn" type="button" (click)="close()">Cancelar</button>
+      <button class="btn btn--primary" type="button" (click)="submit()" [disabled]="loading">
+        Salvar
+      </button>
+    </div>
+  </div>
+</div>

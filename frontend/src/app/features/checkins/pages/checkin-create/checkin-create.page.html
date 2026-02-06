@@ -1,0 +1,46 @@
+<div class="page">
+  <h1>Novo check-in</h1>
+
+  <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="field">
+      <label>Buscar hóspede (nome, documento ou telefone)</label>
+      <input formControlName="termo" placeholder="Digite pelo menos 2 caracteres" />
+      <div class="hint" *ngIf="loadingSearch">Buscando...</div>
+
+      <div class="suggestions" *ngIf="guests.length > 0">
+        <button type="button" *ngFor="let g of guests" (click)="selectGuest(g)">
+          <strong>{{ g.nome }}</strong>
+          <span>{{ g.documento }} • {{ g.telefone }}</span>
+        </button>
+      </div>
+
+      <div class="selected" *ngIf="selectedGuest">
+        Selecionado: <strong>{{ selectedGuest.nome }}</strong>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="field">
+        <label>Data entrada</label>
+        <input type="datetime-local" formControlName="dataEntrada" />
+      </div>
+
+      <div class="field">
+        <label>Data saída</label>
+        <input type="datetime-local" formControlName="dataSaida" />
+      </div>
+    </div>
+
+    <div class="field inline">
+      <input type="checkbox" formControlName="adicionalVeiculo" id="veic" />
+      <label for="veic">Adicionar veículo (vaga na garagem)</label>
+    </div>
+
+    <div class="actions">
+      <button type="submit" [disabled]="loadingSubmit">Salvar check-in</button>
+    </div>
+
+    <div class="error" *ngIf="errorMsg">{{ errorMsg }}</div>
+    <pre class="result" *ngIf="result">{{ result | json }}</pre>
+  </form>
+</div>

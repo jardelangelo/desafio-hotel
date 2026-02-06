@@ -1,0 +1,14 @@
+<div class="wrap">
+  <button class="btn-primary" type="button" (click)="openModal()">
+    Incluir pessoa
+  </button>
+
+  <app-checkin-panel></app-checkin-panel>
+
+  <app-consultas-panel></app-consultas-panel>
+
+  <app-hospede-create-modal
+    [open]="modalOpen"
+    (closed)="closeModal()">
+  </app-hospede-create-modal>
+</div>

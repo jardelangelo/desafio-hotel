@@ -1,0 +1,51 @@
+<section class="panel">
+  <div class="panel__head">Consultas</div>
+
+  <div class="panel__body">
+    <div class="filter">
+      <div class="filter__label">Filtrar por:</div>
+
+      <label class="radio">
+        <input type="radio" name="modo" [checked]="modo==='presentes'" (change)="setModo('presentes')" />
+        Pessoas ainda presentes
+      </label>
+
+      <label class="radio">
+        <input type="radio" name="modo" [checked]="modo==='ausentes'" (change)="setModo('ausentes')" />
+        Pessoas que já deixaram o hotel
+      </label>
+    </div>
+
+    <div class="tableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Documento</th>
+            <th>Valor gasto (R$)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of (data?.items || [])">
+            <td>{{ i.nome }}</td>
+            <td>{{ i.documento }}</td>
+            <td>{{ i.valorTotalGasto | currency:'BRL':'symbol':'1.2-2' }}</td>
+          </tr>
+
+          <tr *ngIf="(data?.items?.length || 0) === 0">
+            <td colspan="3" class="empty">{{ loading ? 'Carregando...' : 'Sem registros' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pager">
+      <button class="pill" type="button" (click)="prev()" [disabled]="loading || !(data?.hasPrevious)">
+        ← Previous
+      </button>
+      <button class="pill" type="button" (click)="next()" [disabled]="loading || !(data?.hasNext)">
+        Next →
+      </button>
+    </div>
+  </div>
+</section>
