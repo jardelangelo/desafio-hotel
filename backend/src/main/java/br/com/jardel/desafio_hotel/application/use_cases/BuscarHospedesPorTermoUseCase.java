@@ -25,10 +25,10 @@ public class BuscarHospedesPorTermoUseCase implements IBuscarHospedesPorTermoUse
 
     @Override
     public List<Hospede> execute(BuscarHospedesPorTermoRequest request) {
-        if (request == null) throw new IllegalArgumentException("request obrigatorio");
+        if (request == null) throw new IllegalArgumentException("Requisição inválida: corpo da requisição (request) é obrigatório.");
 
         String termo = request.termo();
-        if (termo == null || termo.isBlank()) throw new IllegalArgumentException("termo obrigatorio");
+        if (termo == null || termo.isBlank()) throw new IllegalArgumentException("Termo para busca é obrigatório.");
 
         return hospedeRepositorio.buscarPorTermo(termo);
     }

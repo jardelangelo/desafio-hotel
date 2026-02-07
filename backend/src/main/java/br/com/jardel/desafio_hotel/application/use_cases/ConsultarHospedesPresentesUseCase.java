@@ -49,7 +49,7 @@ public class ConsultarHospedesPresentesUseCase implements IConsultarHospedesPres
 
     private GastoHospedeDTO montarGastoHospede(CheckIn checkInAtual) {
         Hospede hospede = hospedeRepositorio.buscarPorId(checkInAtual.idHospede())
-                .orElseThrow(() -> new IllegalStateException("Hospede do check-in nao encontrado"));
+                .orElseThrow(() -> new IllegalStateException("Hóspede do check-in não encontrado."));
 
         List<CheckIn> historico = checkInRepositorio.listarPorHospede(hospede.id());
 

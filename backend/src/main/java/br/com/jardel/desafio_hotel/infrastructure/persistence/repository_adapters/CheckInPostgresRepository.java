@@ -130,7 +130,7 @@ public class CheckInPostgresRepository implements ICheckInRepository {
     }
     
     private void validarPaginacao(int page, int size) {
-        if (page < 0) throw new IllegalArgumentException("page deve ser >= 0");
-        if (size <= 0 || size > 200) throw new IllegalArgumentException("size deve estar entre 1 e 200");
+        if (page < 0) throw new IllegalArgumentException("Página informada deve ser maior que zero.");
+        if (size <= 0 || size > 200) throw new IllegalArgumentException("Quantidade de registros na página deve estar entre 1 e 200.");
     }
 }
