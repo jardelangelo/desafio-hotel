@@ -12,6 +12,7 @@ import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
 import br.com.jardel.desafio_hotel.domain.services.ICalculadoraHospedagemService;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -40,7 +41,9 @@ public class RealizarCheckInUseCase implements IRealizarCheckInUseCase {
         if (request.dataSaida() == null) throw new IllegalArgumentException("Data de saída para CheckIn é obrigatória.");
         if (request.dataSaida().isBefore(request.dataEntrada()))
             throw new IllegalArgumentException("A data de saída do check-in deve ser maior ou igual à data de entrada.");
-
+        if (request.dataEntrada().isAfter(LocalDateTime.now()))
+            throw new IllegalArgumentException("Não é permitido agendar check-in futuro. Por isso, a data de entrada deve ser hoje ou uma data anterior.");
+        
         hospedeRepositorio.buscarPorId(request.idHospede())
                 .orElseThrow(() -> new NotFoundException("Hóspede não encontrado."));
 

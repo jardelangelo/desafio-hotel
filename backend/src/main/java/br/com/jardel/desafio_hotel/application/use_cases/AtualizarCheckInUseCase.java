@@ -44,6 +44,9 @@ public class AtualizarCheckInUseCase implements IAtualizarCheckInUseCase {
         if (novaSaida.isBefore(novaEntrada))
             throw new IllegalArgumentException("A data de saída do check-in deve ser maior ou igual à data de entrada.");
         
+        if (novaEntrada.isAfter(LocalDateTime.now()))
+            throw new IllegalArgumentException("Não é permitido agendar check-in futuro. Por isso, a data de entrada deve ser hoje ou uma data anterior.");
+        
         if (checkInRepositorio.existeSobreposicaoExcluindoId(atual.idHospede(), atual.id(), novaEntrada, novaSaida)) {
             throw new br.com.jardel.desafio_hotel.api.exceptions.ConflictException(
                 "O hóspede já possui uma hospedagem no período informado."
