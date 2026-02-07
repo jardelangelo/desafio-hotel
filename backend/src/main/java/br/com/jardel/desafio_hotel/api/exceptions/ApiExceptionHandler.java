@@ -48,7 +48,7 @@ public class ApiExceptionHandler {
         log.error("Erro inesperado na API", ex);
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ErroPadrao(Instant.now(), 500, "erro interno"));
+                .body(new ErroPadrao(Instant.now(), 500, "Erro interno"));
     }
     
 }

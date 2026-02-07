@@ -24,10 +24,10 @@ public class AtualizarHospedeUseCase implements IAtualizarHospedeUseCase {
 
     @Override
     public Hospede execute(AtualizarHospedeRequest request) {
-        if (request == null || request.id() == null) throw new IllegalArgumentException("id obrigatorio");
+        if (request == null || request.id() == null) throw new IllegalArgumentException("ID do hóspede é obrigatório.");
 
         Hospede atual = hospedeRepositorio.buscarPorId(request.id())
-                .orElseThrow(() -> new NotFoundException("hospede nao encontrado"));
+                .orElseThrow(() -> new NotFoundException("Hóspede não encontrado."));
 
         String nome = (request.nome() == null || request.nome().isBlank()) ? atual.nome() : request.nome().trim();
         String telefone = (request.telefone() == null || request.telefone().isBlank()) ? atual.telefone() : request.telefone().trim();

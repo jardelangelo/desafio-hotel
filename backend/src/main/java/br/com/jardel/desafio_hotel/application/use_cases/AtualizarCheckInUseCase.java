@@ -31,22 +31,22 @@ public class AtualizarCheckInUseCase implements IAtualizarCheckInUseCase {
 
     @Override
     public CheckIn execute(AtualizarCheckInRequest request) {
-        if (request == null) throw new IllegalArgumentException("request obrigatorio");
-        if (request.id() == null) throw new IllegalArgumentException("id obrigatorio");
+        if (request == null) throw new IllegalArgumentException("Requisição inválida: corpo da requisição (request) é obrigatório.");
+        if (request.id() == null) throw new IllegalArgumentException("ID do check-in é obrigatório.");
 
         CheckIn atual = checkInRepositorio.buscarPorId(request.id())
-                .orElseThrow(() -> new NotFoundException("checkin nao encontrado"));
+                .orElseThrow(() -> new NotFoundException("Check-in não encontrado."));
 
         LocalDateTime novaEntrada = request.dataEntrada() != null ? request.dataEntrada() : atual.dataEntrada();
         LocalDateTime novaSaida   = request.dataSaida()   != null ? request.dataSaida()   : atual.dataSaida();
         boolean novoVeiculo       = request.adicionalVeiculo() != null ? request.adicionalVeiculo() : atual.adicionalVeiculo();
 
         if (novaSaida.isBefore(novaEntrada))
-            throw new IllegalArgumentException("dataSaida deve ser maior/igual dataEntrada");
+            throw new IllegalArgumentException("A data de saída do check-in deve ser maior ou igual à data de entrada.");
         
         if (checkInRepositorio.existeSobreposicaoExcluindoId(atual.idHospede(), atual.id(), novaEntrada, novaSaida)) {
             throw new br.com.jardel.desafio_hotel.api.exceptions.ConflictException(
-                "Hospede ja possui outra hospedagem no periodo informado"
+                "O hóspede já possui uma hospedagem no período informado."
             );
         }
         

@@ -27,15 +27,15 @@ public class ExcluirHospedeUseCase implements IExcluirHospedeUseCase {
 
     @Override
     public Void execute(ExcluirHospedeRequest request) {
-        if (request == null || request.id() == null) throw new IllegalArgumentException("id obrigatorio");
+        if (request == null || request.id() == null) throw new IllegalArgumentException("ID do hóspede é obrigatório.");
 
         Long id = request.id();
 
         hospedeRepositorio.buscarPorId(id)
-                .orElseThrow(() -> new NotFoundException("hospede nao encontrado"));
+                .orElseThrow(() -> new NotFoundException("Hóspede não encontrado."));
 
         if (!checkInRepositorio.listarPorHospede(id).isEmpty()) {
-            throw new ConflictException("nao e possivel excluir hospede com checkins vinculados");
+            throw new ConflictException("Não é possível excluir o hóspede, pois existem check-ins vinculados a ele.");
         }
 
         hospedeRepositorio.excluirPorId(id);

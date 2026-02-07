@@ -10,7 +10,6 @@ import br.com.jardel.desafio_hotel.domain.models.Hospede;
 import br.com.jardel.desafio_hotel.domain.services.ICalculadoraHospedagemService;
 import br.com.jardel.desafio_hotel.domain.repositories.ICheckInRepository;
 import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
-import br.com.jardel.desafio_hotel.api.dtos.EmptyRequest;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -50,7 +49,7 @@ public class ConsultarHospedesAusentesUseCase implements IConsultarHospedesAusen
 
     private GastoHospedeDTO montarGastoHospede(CheckIn ultimoCheckIn) {
         Hospede hospede = hospedeRepositorio.buscarPorId(ultimoCheckIn.idHospede())
-                .orElseThrow(() -> new IllegalStateException("Hospede do check-in nao encontrado"));
+                .orElseThrow(() -> new IllegalStateException("Hóspede do check-in não encontrado."));
 
         List<CheckIn> historico = checkInRepositorio.listarPorHospede(hospede.id());
 

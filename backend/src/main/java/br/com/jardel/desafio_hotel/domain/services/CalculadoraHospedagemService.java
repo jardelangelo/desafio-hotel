@@ -16,6 +16,7 @@ import java.time.temporal.ChronoUnit;
  *
  * @author jarde
  */
+
 public class CalculadoraHospedagemService implements ICalculadoraHospedagemService  {
     
     private static final BigDecimal DIARIA_DIA_UTIL = new BigDecimal("120.00");
@@ -71,11 +72,11 @@ public class CalculadoraHospedagemService implements ICalculadoraHospedagemServi
     }
 
     private void validar(CheckIn checkIn) {
-        if (checkIn == null) throw new IllegalArgumentException("checkIn obrigatorio");
-        if (checkIn.dataEntrada() == null) throw new IllegalArgumentException("dataEntrada obrigatoria");
-        if (checkIn.dataSaida() == null) throw new IllegalArgumentException("dataSaida obrigatoria");
+        if (checkIn == null) throw new IllegalArgumentException("Check-in é obrigatório.");
+        if (checkIn.dataEntrada() == null) throw new IllegalArgumentException("Data de entrada é obrigatória.");
+        if (checkIn.dataSaida() == null) throw new IllegalArgumentException("Data de saída é obrigatória.");
         if (checkIn.dataSaida().isBefore(checkIn.dataEntrada())) {
-            throw new IllegalArgumentException("dataSaida deve ser maior/igual dataEntrada");
+            throw new IllegalArgumentException("A data de saída do check-in deve ser maior ou igual à data de entrada.");
         }
     }
     

@@ -12,7 +12,6 @@ import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
 import br.com.jardel.desafio_hotel.domain.services.ICalculadoraHospedagemService;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 /**
  *
@@ -35,15 +34,15 @@ public class RealizarCheckInUseCase implements IRealizarCheckInUseCase {
 
     @Override
     public CheckIn execute(RealizarCheckInRequest request) {
-        if (request == null) throw new IllegalArgumentException("request obrigatorio");
-        if (request.idHospede() == null) throw new IllegalArgumentException("idHospede obrigatorio");
-        if (request.dataEntrada() == null) throw new IllegalArgumentException("dataEntrada obrigatoria");
-        if (request.dataSaida() == null) throw new IllegalArgumentException("dataSaida obrigatoria");
+        if (request == null) throw new IllegalArgumentException("Requisição inválida: corpo da requisição (request) é obrigatório.");
+        if (request.idHospede() == null) throw new IllegalArgumentException("Hóspede é obrigatório.");
+        if (request.dataEntrada() == null) throw new IllegalArgumentException("Data de entrada para CheckIn é obrigatória.");
+        if (request.dataSaida() == null) throw new IllegalArgumentException("Data de saída para CheckIn é obrigatória.");
         if (request.dataSaida().isBefore(request.dataEntrada()))
-            throw new IllegalArgumentException("dataSaida deve ser maior/igual dataEntrada");
+            throw new IllegalArgumentException("A data de saída do check-in deve ser maior ou igual à data de entrada.");
 
         hospedeRepositorio.buscarPorId(request.idHospede())
-                .orElseThrow(() -> new NotFoundException("hospede nao encontrado"));
+                .orElseThrow(() -> new NotFoundException("Hóspede não encontrado."));
 
         // calcula e persiste snapshot
         CheckIn paraCalcular = new CheckIn(null, request.idHospede(), request.dataEntrada(), request.dataSaida(),
@@ -56,7 +55,7 @@ public class RealizarCheckInUseCase implements IRealizarCheckInUseCase {
 
         if (checkInRepositorio.existeSobreposicao(request.idHospede(), request.dataEntrada(), request.dataSaida())) {
             throw new br.com.jardel.desafio_hotel.api.exceptions.ConflictException(
-                "Hospede ja possui uma hospedagem no periodo informado"
+                "O hóspede já possui uma hospedagem no período informado."
             );
         }
         

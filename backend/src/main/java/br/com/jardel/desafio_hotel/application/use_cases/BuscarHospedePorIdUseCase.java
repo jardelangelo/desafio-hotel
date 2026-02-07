@@ -24,9 +24,9 @@ public class BuscarHospedePorIdUseCase implements IBuscarHospedePorIdUseCase {
 
     @Override
     public Hospede execute(BuscarHospedePorIdRequest request) {
-        if (request == null || request.id() == null) throw new IllegalArgumentException("id obrigatorio");
+        if (request == null || request.id() == null) throw new IllegalArgumentException("ID do hóspede é obrigatório.");
 
         return hospedeRepositorio.buscarPorId(request.id())
-                .orElseThrow(() -> new NotFoundException("hospede nao encontrado"));
+                .orElseThrow(() -> new NotFoundException("Hóspede não encontrado."));
     }
 }

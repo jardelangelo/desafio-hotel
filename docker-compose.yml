@@ -10,6 +10,113 @@ services:
       - "5432:5432"
     volumes:
       - hotel_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hotel -d hotel"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  flyway:
+    image: flyway/flyway:10
+    container_name: hotel_flyway
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      -url=jdbc:postgresql://db:5432/hotel
+      -user=hotel
+      -password=hotel
+      -connectRetries=60
+      migrate
+    volumes:
+      - ./backend/src/main/resources/db/migration:/flyway/sql:ro
+    restart: "no"
 
 volumes:
   hotel_pgdata:
+
+# Verificar possibilidade de subir todo o projeto (front/back/banco/etc com o docker)
+#services:
+#  db:
+#    image: postgres:16
+#    container_name: hotel_db
+#    environment:
+#      POSTGRES_DB: hotel
+#      POSTGRES_USER: hotel
+#      POSTGRES_PASSWORD: hotel
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - hotel_pgdata:/var/lib/postgresql/data
+#    healthcheck:
+#      test: ["CMD-SHELL", "pg_isready -U hotel -d hotel"]
+#      interval: 5s
+#      timeout: 3s
+#      retries: 20
+#
+#  flyway:
+#    image: flyway/flyway:10
+#    container_name: hotel_flyway
+#    depends_on:
+#      db:
+#        condition: service_healthy
+#    command: >
+#      -url=jdbc:postgresql://db:5432/hotel
+#      -user=hotel
+#      -password=hotel
+#      -connectRetries=60
+#      migrate
+#    volumes:
+#      - ./backend/src/main/resources/db/migration:/flyway/sql:ro
+#    restart: "no"
+#
+#  backend:
+#    image: maven:3.9-eclipse-temurin-25
+#    container_name: hotel_backend
+#    working_dir: /app
+#    volumes:
+#      - ./backend:/app
+#      - maven_repo:/root/.m2
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/hotel
+#      SPRING_DATASOURCE_USERNAME: hotel
+#      SPRING_DATASOURCE_PASSWORD: hotel
+#      SPRING_FLYWAY_ENABLED: "false" # flyway roda no container flyway acima
+#    depends_on:
+#      db:
+#        condition: service_healthy
+#      flyway:
+#        condition: service_completed_successfully
+#    ports:
+#      - "8080:8080"
+#    command: mvn -q -DskipTests spring-boot:run
+#
+#  frontend:
+#    image: node:20
+#    container_name: hotel_frontend
+#    working_dir: /app
+#    volumes:
+#      - ./frontend:/app
+#      - frontend_node_modules:/app/node_modules
+#    environment:
+#      CHOKIDAR_USEPOLLING: "true"
+#    depends_on:
+#      - backend
+#    ports:
+#      - "4200:4200"
+#    command: >
+#      sh -c "
+#      npm ci &&
+#      cat > proxy.docker.json <<'EOF'
+#      {
+#        \"/api\": { \"target\": \"http://backend:8080\", \"secure\": false, \"changeOrigin\": true }
+#      }
+#      EOF
+#      &&
+#      npx ng serve --host 0.0.0.0 --port 4200 --proxy-config proxy.docker.json --poll 2000
+#      "
+#
+#volumes:
+#  hotel_pgdata:
+#  maven_repo:
+#  frontend_node_modules:

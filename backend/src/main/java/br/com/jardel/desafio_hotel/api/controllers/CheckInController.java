@@ -32,7 +32,7 @@ public class CheckInController {
     private final IConsultarHospedesAusentesUseCase consultarAusentes;
 
     public CheckInController(IRealizarCheckInUseCase realizarCheckIn,
-                             IAtualizarCheckInUseCase atualizarCheckIn, // ✅ INJETADO
+                             IAtualizarCheckInUseCase atualizarCheckIn,
                              IConsultarHospedesPresentesUseCase consultarPresentes,
                              IConsultarHospedesAusentesUseCase consultarAusentes) {
         this.realizarCheckIn = realizarCheckIn;

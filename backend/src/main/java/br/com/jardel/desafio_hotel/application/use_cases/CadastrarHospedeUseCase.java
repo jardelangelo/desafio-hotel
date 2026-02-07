@@ -23,18 +23,18 @@ public class CadastrarHospedeUseCase implements ICadastrarHospedeUseCase  {
 
     @Override
     public Hospede execute(CadastrarHospedeRequest request) {
-        if (request == null) throw new IllegalArgumentException("request obrigatorio");
+        if (request == null) throw new IllegalArgumentException("Requisição inválida: corpo da requisição (request) é obrigatório.");
 
         String nome = request.nome();
         String documento = request.documento();
         String telefone = request.telefone();
 
-        if (nome == null || nome.isBlank()) throw new IllegalArgumentException("nome obrigatorio");
-        if (documento == null || documento.isBlank()) throw new IllegalArgumentException("documento obrigatorio");
-        if (telefone == null || telefone.isBlank()) throw new IllegalArgumentException("telefone obrigatorio");
+        if (nome == null || nome.isBlank()) throw new IllegalArgumentException("Nome do hóspede é obrigatório.");
+        if (documento == null || documento.isBlank()) throw new IllegalArgumentException("Documento do hóspede é obrigatório.");
+        if (telefone == null || telefone.isBlank()) throw new IllegalArgumentException("Telefone do hóspede é obrigatório.");
 
         hospedeRepositorio.buscarPorDocumento(documento).ifPresent(h -> {
-            throw new IllegalArgumentException("documento ja cadastrado");
+            throw new IllegalArgumentException("Já existe um hóspede cadastrado com este documento.");
         });
 
         Hospede novo = new Hospede(null, nome.trim(), documento.trim(), telefone.trim());
