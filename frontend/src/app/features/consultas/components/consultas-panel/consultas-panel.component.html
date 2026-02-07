@@ -5,15 +5,23 @@
     <div class="filter">
       <div class="filter__label">Filtrar por:</div>
 
-      <label class="radio">
-        <input type="radio" name="modo" [checked]="modo==='presentes'" (change)="setModo('presentes')" />
-        Pessoas ainda presentes
-      </label>
+      <div class="filter__radios">
+        <label class="radio">
+          <input type="radio"
+                [attr.name]="radioName"
+                [checked]="modo==='presentes'"
+                (change)="setModo('presentes')" />
+          Pessoas ainda presentes
+        </label>
 
-      <label class="radio">
-        <input type="radio" name="modo" [checked]="modo==='ausentes'" (change)="setModo('ausentes')" />
-        Pessoas que já deixaram o hotel
-      </label>
+        <label class="radio">
+          <input type="radio"
+                [attr.name]="radioName"
+                [checked]="modo==='ausentes'"
+                (change)="setModo('ausentes')" />
+          Pessoas que já deixaram o hotel
+        </label>
+      </div>
     </div>
 
     <div class="tableWrap">
@@ -22,30 +30,60 @@
           <tr>
             <th>Nome</th>
             <th>Documento</th>
-            <th>Valor gasto (R$)</th>
+            <th>Telefone</th>
+            <th>Entrada</th>
+            <th>Saída</th>
+            <th>Veículo</th>
+            <th>Total gasto</th>
+            <th>Última hospedagem</th>
           </tr>
         </thead>
+
         <tbody>
           <tr *ngFor="let i of (data?.items || [])">
             <td>{{ i.nome }}</td>
             <td>{{ i.documento }}</td>
+            <td>{{ i.telefone }}</td>
+            <td>{{ i.dataEntrada | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ i.dataSaida | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ i.adicionalVeiculo ? 'Sim' : 'Não' }}</td>
             <td>{{ i.valorTotalGasto | currency:'BRL':'symbol':'1.2-2' }}</td>
+            <td>{{ i.valorUltimaHospedagem | currency:'BRL':'symbol':'1.2-2' }}</td>
           </tr>
 
           <tr *ngIf="(data?.items?.length || 0) === 0">
-            <td colspan="3" class="empty">{{ loading ? 'Carregando...' : 'Sem registros' }}</td>
+            <td colspan="8" class="empty">{{ loading ? 'Carregando...' : 'Sem registros' }}</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="pager">
-      <button class="pill" type="button" (click)="prev()" [disabled]="loading || !(data?.hasPrevious)">
-        ← Previous
-      </button>
-      <button class="pill" type="button" (click)="next()" [disabled]="loading || !(data?.hasNext)">
-        Next →
-      </button>
+      <div class="pager__left">
+        <button class="pill" type="button"
+                (click)="prev()"
+                [disabled]="loading || !searchedOnce || page === 0">
+          ← Previous
+        </button>
+
+        <button class="pill" type="button"
+                (click)="next()"
+                [disabled]="loading || !searchedOnce || (data && !data.hasNext)">
+          Next →
+        </button>
+      </div>
+
+      <div class="pager__right">
+        <span class="pager__text">Por página:</span>
+
+        <select class="pager__select"
+                [disabled]="loading"
+                [value]="size"
+                (change)="setSize(+$any($event.target).value)">
+          <option *ngFor="let s of sizeOptions" [value]="s">{{ s }}</option>
+        </select>
+      </div>
     </div>
+    
   </div>
 </section>

@@ -3,7 +3,9 @@
   border-radius: 5px;
   background: #fff;
   margin: 10px 0 14px;
-  overflow: hidden;
+  overflow: visible;
+  position: relative;
+  z-index: 5;
 }
 
 .panel__head {
@@ -11,6 +13,8 @@
   color: #fff;
   padding: 8px 12px;
   font-size: 13px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .panel__body { padding: 12px; }
@@ -56,19 +60,43 @@ input:focus { border-color: #2b79b8; }
 }
 .btn-save:disabled { opacity: 0.7; cursor: default; }
 
-.error { margin-top: 10px; color: #b00020; font-size: 12px; }
+.hint { font-size: 12px; opacity: .75; margin-top: 4px; }
+
+.ok {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  background: #e8f6ef;
+  border: 1px solid #bde5cf;
+  color: #1b6b3a;
+  font-size: 12px;
+}
+
+.error {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  background: #fdecee;
+  border: 1px solid #f3c2c7;
+  color: #b00020;
+  font-size: 12px;
+}
 
 .pessoa { position: relative; }
+
 .suggestions {
   position: absolute;
   left: 0; right: 0;
-  top: 64px;
+  top: calc(100% + 4px);
   background: #fff;
   border: 1px solid #d5dbe0;
   border-radius: 4px;
-  overflow: hidden;
-  z-index: 10;
+  overflow: auto;
+  max-height: 160px;
+  z-index: 999; /* ✅ fica acima de tudo */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
+
 .suggestions button {
   width: 100%;
   text-align: left;
