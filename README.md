@@ -56,12 +56,12 @@ O projeto implementa um fluxo completo:
 ## Regras de negócio
 
 Valores de diárias:
-- Quarto **sem garagem**: R$ 120,00
-- Quarto **com garagem**: R$ 150,00
+- Quarto **de segunda à sexta**: R$ 120,00
+- Quarto **em finais de semana**: R$ 150,00
 
 Adicional de garagem:
-- Garagem **sem veículo**: R$ 15,00
-- Garagem **com veículo**: R$ 20,00
+- Garagem **de segunda à sexta**: R$ 15,00
+- Garagem **em finais de semana**: R$ 20,00
 
 Check-out após 16:30:
 - Caso a saída ocorra após 16:30, cobra-se **uma diária adicional**.

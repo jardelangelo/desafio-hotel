@@ -62,7 +62,7 @@ export class CheckInPanelComponent {
         if (term.length < NumeroLetrasPesquisa) {
           this.loadingSearch = false;
           this.guests = [];
-          this.cdr.markForCheck(); // importante no zoneless
+          this.cdr.markForCheck();
           return;
         }
 
@@ -144,7 +144,6 @@ export class CheckInPanelComponent {
       adicionalVeiculo: !!raw.adicionalVeiculo,
     };
 
-    // validação simples
     const entrada = new Date(payload.dataEntrada);
     const saida = new Date(payload.dataSaida);
     if (!(entrada < saida)) {

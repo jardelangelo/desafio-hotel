@@ -93,7 +93,7 @@ input:focus { border-color: #2b79b8; }
   border-radius: 4px;
   overflow: auto;
   max-height: 160px;
-  z-index: 999; /* ✅ fica acima de tudo */
+  z-index: 999;
   box-shadow: 0 10px 20px rgba(0,0,0,0.08);
 }
 

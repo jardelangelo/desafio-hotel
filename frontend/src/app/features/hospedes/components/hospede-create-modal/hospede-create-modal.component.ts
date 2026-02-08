@@ -84,7 +84,7 @@ export class HospedeCreateModalComponent {
       next: (res: Guest) => {
         this.loading = false;
         this.form.reset();
-        this.events.guestCreated(res); // mantém sua integração com o check-in
+        this.events.guestCreated(res);
         this.close();
       },
       error: (err) => {

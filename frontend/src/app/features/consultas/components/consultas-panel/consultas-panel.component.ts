@@ -42,8 +42,7 @@ export class ConsultasPanelComponent {
   ) {
     this.destroyRef.onDestroy(() => this.loadSub?.unsubscribe());
 
-    // se salvar check-in, você pode optar por recarregar automaticamente a página atual:
-    // aqui deixei manual (não mexe na grid sozinho)
+    // se salvar check-in, recarrga consulta automaticamente
     this.events.refreshConsultas$
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => {
@@ -52,7 +51,7 @@ export class ConsultasPanelComponent {
         this.load();
       });
 
-      this.load(); // carrega a listagem padrão ao abrir (presentes)
+      this.load();
   }
 
   setSize(n: number) {
@@ -72,12 +71,12 @@ export class ConsultasPanelComponent {
     this.searchedOnce = false;
     this.data = null;
 
-    // cancela request pendente (evita “troca sozinho”)
-    this.loading = false;     // <- importante se estava carregando
+    // cancela request pendente
+    this.loading = false;
     this.loadSub?.unsubscribe();
     this.reqToken++;
 
-    this.cdr.markForCheck();  // <- força atualizar a tela
+    this.cdr.markForCheck();
     this.load();
   }
 
@@ -105,7 +104,7 @@ export class ConsultasPanelComponent {
     const sizeSnap = this.size;
 
     this.loading = true;
-    this.cdr.markForCheck(); // <- faz aparecer "Carregando..." imediatamente
+    this.cdr.markForCheck();
 
     const obs = modoSnap === 'presentes'
       ? this.consultas.presentes(pageSnap, sizeSnap)
@@ -128,7 +127,6 @@ export class ConsultasPanelComponent {
         console.error(err);
         this.loading = false;
 
-        // mantém searchedOnce como está (se já tinha dados, mantém navegação)
         this.data = {
           items: [],
           page: 0,
