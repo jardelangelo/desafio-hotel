@@ -394,3 +394,11 @@ Exemplo:
 GET /api/checkins/presentes?page=0&size=10
 ```
 
+## Apresentação
+
+### Cadastro de Hóspede
+![CadastroHospede](https://github.com/user-attachments/assets/f08dd068-ad7d-420a-a226-195c95acc119)
+
+### Cadastro de CheckIn
+![CheckInHospede](https://github.com/user-attachments/assets/24c64464-a47a-4637-ae76-5a72cdece1c2)
+
