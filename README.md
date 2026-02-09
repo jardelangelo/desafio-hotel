@@ -23,6 +23,7 @@ Sistema de gestão simples de hotel, com cadastro de hóspedes, check-in e consu
 - [Frontend](#frontend)
   - [Proxy /api](#proxy-api)
   - [Paginação](#paginação)
+  - [Apresentação](#apresentação)
 
 ---
 
