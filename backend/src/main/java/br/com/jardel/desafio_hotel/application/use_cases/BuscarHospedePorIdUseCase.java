@@ -1,19 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.com.jardel.desafio_hotel.application.use_cases;
 
-import br.com.jardel.desafio_hotel.api.exceptions.NotFoundException;
 import br.com.jardel.desafio_hotel.api.dtos.BuscarHospedePorIdRequest;
+import br.com.jardel.desafio_hotel.api.exceptions.NotFoundException;
 import br.com.jardel.desafio_hotel.domain.models.Hospede;
 import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
+import org.springframework.stereotype.Component;
 
-/**
- *
- * @author jarde
- */
-
+@Component
 public class BuscarHospedePorIdUseCase implements IBuscarHospedePorIdUseCase {
 
     private final IHospedeRepository hospedeRepositorio;

@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
-
 package br.com.jardel.desafio_hotel.test_support;
 
 import br.com.jardel.desafio_hotel.domain.models.CheckIn;
@@ -10,15 +5,22 @@ import br.com.jardel.desafio_hotel.domain.repositories.ICheckInRepository;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class FakeCheckInRepository implements ICheckInRepository {
 
     private final Map<Long, CheckIn> dados = new LinkedHashMap<>();
     private final AtomicLong seq = new AtomicLong(1);
-
-    // "agora" fixo para testes (p/ presentes/ausentes)
     private LocalDateTime agora;
 
     public FakeCheckInRepository(LocalDateTime agora) {
@@ -77,8 +79,16 @@ public class FakeCheckInRepository implements ICheckInRepository {
         return false;
     }
 
-    // mesma regra do JPA:
-    // c.dataEntrada < novaSaida  AND  c.dataSaida > novaEntrada
+    @Override
+    public boolean existePorHospede(Long idHospede) {
+        for (CheckIn c : dados.values()) {
+            if (Objects.equals(c.idHospede(), idHospede)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private boolean sobrepoe(CheckIn existente, LocalDateTime novaEntrada, LocalDateTime novaSaida) {
         return existente.dataEntrada().isBefore(novaSaida) && existente.dataSaida().isAfter(novaEntrada);
     }
@@ -111,8 +121,8 @@ public class FakeCheckInRepository implements ICheckInRepository {
 
         Map<Long, CheckIn> ultimoPorHospede = new HashMap<>();
         for (CheckIn c : dados.values()) {
-            if (c.dataEntrada().isAfter(agora)) continue;              // entry_at <= agora
-            if (!c.dataSaida().isAfter(agora)) continue;              // exit_at > agora
+            if (c.dataEntrada().isAfter(agora)) continue;
+            if (!c.dataSaida().isAfter(agora)) continue;
             CheckIn atual = ultimoPorHospede.get(c.idHospede());
             if (atual == null || c.dataSaida().isAfter(atual.dataSaida())) {
                 ultimoPorHospede.put(c.idHospede(), c);
@@ -142,7 +152,7 @@ public class FakeCheckInRepository implements ICheckInRepository {
 
         Map<Long, CheckIn> ultimoPorHospede = new HashMap<>();
         for (CheckIn c : dados.values()) {
-            if (c.dataSaida().isAfter(agora)) continue; // exit_at <= agora
+            if (c.dataSaida().isAfter(agora)) continue;
             CheckIn atual = ultimoPorHospede.get(c.idHospede());
             if (atual == null || c.dataSaida().isAfter(atual.dataSaida())) {
                 ultimoPorHospede.put(c.idHospede(), c);
@@ -159,7 +169,7 @@ public class FakeCheckInRepository implements ICheckInRepository {
     public long contarAusentes() {
         Set<Long> distinct = new HashSet<>();
         for (CheckIn c : dados.values()) {
-            if (!c.dataSaida().isAfter(agora)) { // exit_at <= agora
+            if (!c.dataSaida().isAfter(agora)) {
                 distinct.add(c.idHospede());
             }
         }
@@ -170,8 +180,8 @@ public class FakeCheckInRepository implements ICheckInRepository {
     public BigDecimal somarTotalPorHospede(Long idHospede) {
         BigDecimal total = BigDecimal.ZERO;
         for (CheckIn c : dados.values()) {
-            if (Objects.equals(c.idHospede(), idHospede)) {
-                if (c.valorTotal() != null) total = total.add(c.valorTotal());
+            if (Objects.equals(c.idHospede(), idHospede) && c.valorTotal() != null) {
+                total = total.add(c.valorTotal());
             }
         }
         return total;

@@ -1,14 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
-
 package br.com.jardel.desafio_hotel.test_support;
 
 import br.com.jardel.desafio_hotel.domain.models.Hospede;
 import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class FakeHospedeRepository implements IHospedeRepository {
@@ -56,6 +56,11 @@ public class FakeHospedeRepository implements IHospedeRepository {
     }
 
     @Override
+    public boolean existePorDocumento(String documento) {
+        return buscarPorDocumento(documento).isPresent();
+    }
+
+    @Override
     public List<Hospede> listarTodos() {
         return new ArrayList<>(dados.values());
     }
@@ -74,14 +79,14 @@ public class FakeHospedeRepository implements IHospedeRepository {
 
         List<Hospede> resp = new ArrayList<>();
         for (Hospede h : dados.values()) {
-            if (contém(h.nome(), t) || contém(h.documento(), t) || contém(h.telefone(), t)) {
+            if (contem(h.nome(), t) || contem(h.documento(), t) || contem(h.telefone(), t)) {
                 resp.add(h);
             }
         }
         return resp;
     }
 
-    private boolean contém(String campo, String termoLower) {
+    private boolean contem(String campo, String termoLower) {
         if (campo == null) return false;
         return campo.toLowerCase(Locale.ROOT).contains(termoLower);
     }

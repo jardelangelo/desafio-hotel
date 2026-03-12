@@ -7,8 +7,10 @@ package br.com.jardel.desafio_hotel.domain.services;
 
 import br.com.jardel.desafio_hotel.api.dtos.CadastrarHospedeRequest;
 import br.com.jardel.desafio_hotel.domain.models.Hospede;
+import br.com.jardel.desafio_hotel.test_support.FakeCheckInRepository;
 import br.com.jardel.desafio_hotel.test_support.FakeHospedeRepository;
 import br.com.jardel.desafio_hotel.application.use_cases.*;
+import br.com.jardel.desafio_hotel.application.validators.HospedeValidator;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +22,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CadastrarHospedeUseCaseTest {
 
     private final FakeHospedeRepository hospedeRepositorio = new FakeHospedeRepository();
-    private final ICadastrarHospedeUseCase useCase = new CadastrarHospedeUseCase(hospedeRepositorio);
+    private final HospedeValidator hospedeValidator = new HospedeValidator(hospedeRepositorio, new FakeCheckInRepository(java.time.LocalDateTime.of(2026, 2, 7, 12, 0)));
+    private final ICadastrarHospedeUseCase useCase = new CadastrarHospedeUseCase(hospedeRepositorio, hospedeValidator);
 
     @Test
     void deveCadastrarHospedeQuandoRequestValido() {

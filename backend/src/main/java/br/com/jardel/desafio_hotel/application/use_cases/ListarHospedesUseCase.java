@@ -7,6 +7,7 @@ package br.com.jardel.desafio_hotel.application.use_cases;
 import br.com.jardel.desafio_hotel.api.dtos.EmptyRequest;
 import br.com.jardel.desafio_hotel.domain.models.Hospede;
 import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * @author jarde
  */
 
+@Component
 public class ListarHospedesUseCase implements IListarHospedesUseCase {
 
     private final IHospedeRepository hospedeRepositorio;

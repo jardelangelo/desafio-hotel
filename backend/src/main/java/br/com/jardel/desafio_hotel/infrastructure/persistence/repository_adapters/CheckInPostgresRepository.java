@@ -1,23 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.com.jardel.desafio_hotel.infrastructure.persistence.repository_adapters;
 
 import br.com.jardel.desafio_hotel.domain.models.CheckIn;
 import br.com.jardel.desafio_hotel.domain.repositories.ICheckInRepository;
 import br.com.jardel.desafio_hotel.infrastructure.persistence.entities.CheckInEntity;
+import br.com.jardel.desafio_hotel.infrastructure.persistence.jpa_repositories.ICheckInJpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
-import java.util.*;
 import java.math.BigDecimal;
-import br.com.jardel.desafio_hotel.infrastructure.persistence.jpa_repositories.ICheckInJpaRepository;
-
-/**
- *
- * @author jarde
- */
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public class CheckInPostgresRepository implements ICheckInRepository {
@@ -46,7 +41,27 @@ public class CheckInPostgresRepository implements ICheckInRepository {
     public Optional<CheckIn> buscarPorId(Long id) {
         return jpa.findById(id).map(this::toDominio);
     }
-    
+
+    @Override
+    public boolean existeSobreposicao(Long idHospede, LocalDateTime novaEntrada, LocalDateTime novaSaida) {
+        return jpa.existsByIdHospedeAndDataEntradaLessThanAndDataSaidaGreaterThan(idHospede, novaSaida, novaEntrada);
+    }
+
+    @Override
+    public boolean existeSobreposicaoExcluindoId(Long idHospede, Long checkInId, LocalDateTime novaEntrada, LocalDateTime novaSaida) {
+        return jpa.existsByIdHospedeAndIdNotAndDataEntradaLessThanAndDataSaidaGreaterThan(
+                idHospede,
+                checkInId,
+                novaSaida,
+                novaEntrada
+        );
+    }
+
+    @Override
+    public boolean existePorHospede(Long idHospede) {
+        return jpa.existsByIdHospede(idHospede);
+    }
+
     @Override
     public List<CheckIn> listarPresentes() {
         LocalDateTime agora = LocalDateTime.now();
@@ -66,16 +81,6 @@ public class CheckInPostgresRepository implements ICheckInRepository {
         return jpa.findByIdHospedeOrderByDataEntradaDesc(idHospede).stream().map(this::toDominio).toList();
     }
 
-    @Override
-    public boolean existeSobreposicao(Long idHospede, LocalDateTime novaEntrada, LocalDateTime novaSaida) {
-        return jpa.existeSobreposicao(idHospede, novaEntrada, novaSaida);
-    }
-
-    @Override
-    public boolean existeSobreposicaoExcluindoId(Long idHospede, Long checkInId, LocalDateTime novaEntrada, LocalDateTime novaSaida) {
-        return jpa.existeSobreposicaoExcluindoId(idHospede, checkInId, novaEntrada, novaSaida);
-    }
-    
     @Override
     public List<CheckIn> listarPresentesPaginado(int page, int size) {
         validarPaginacao(page, size);
@@ -106,17 +111,18 @@ public class CheckInPostgresRepository implements ICheckInRepository {
     public BigDecimal somarTotalPorHospede(Long idHospede) {
         return jpa.somarTotalPorHospede(idHospede);
     }
-    
+
     private CheckIn toDominio(CheckInEntity e) {
         return new CheckIn(
-                e.getId(), 
-                e.getIdHospede(), 
-                e.getDataEntrada(), 
-                e.getDataSaida(), 
-                e.isAdicionalVeiculo(), 
-                e.getValorTotal());
+                e.getId(),
+                e.getIdHospede(),
+                e.getDataEntrada(),
+                e.getDataSaida(),
+                e.isAdicionalVeiculo(),
+                e.getValorTotal()
+        );
     }
-    
+
     private List<CheckIn> manterApenasUltimoPorHospede(List<CheckInEntity> listaOrdenada) {
         Set<Long> vistos = new HashSet<>();
         List<CheckIn> resultado = new ArrayList<>();
@@ -128,7 +134,7 @@ public class CheckInPostgresRepository implements ICheckInRepository {
         }
         return resultado;
     }
-    
+
     private void validarPaginacao(int page, int size) {
         if (page < 0) throw new IllegalArgumentException("Página informada deve ser maior que zero.");
         if (size <= 0 || size > 200) throw new IllegalArgumentException("Quantidade de registros na página deve estar entre 1 e 200.");

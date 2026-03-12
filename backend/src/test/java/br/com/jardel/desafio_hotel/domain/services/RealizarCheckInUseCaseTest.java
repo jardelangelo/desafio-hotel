@@ -13,6 +13,7 @@ import br.com.jardel.desafio_hotel.domain.models.Hospede;
 import br.com.jardel.desafio_hotel.test_support.FakeCheckInRepository;
 import br.com.jardel.desafio_hotel.test_support.FakeHospedeRepository;
 import br.com.jardel.desafio_hotel.application.use_cases.*;
+import br.com.jardel.desafio_hotel.application.validators.CheckInValidator;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,8 +31,9 @@ public class RealizarCheckInUseCaseTest {
     private final FakeHospedeRepository hospedeRepositorio = new FakeHospedeRepository();
     private final FakeCheckInRepository checkInRepositorio = new FakeCheckInRepository(LocalDateTime.of(2026, 2, 7, 12, 0));
     private final ICalculadoraHospedagemService calculadora = new CalculadoraHospedagemService();
+    private final CheckInValidator checkInValidator = new CheckInValidator(hospedeRepositorio, checkInRepositorio);
 
-    private final IRealizarCheckInUseCase useCase = new RealizarCheckInUseCase(hospedeRepositorio, checkInRepositorio, calculadora);
+    private final IRealizarCheckInUseCase useCase = new RealizarCheckInUseCase(checkInRepositorio, calculadora, checkInValidator);
 
     @Test
     void deveRealizarCheckInQuandoValido() {

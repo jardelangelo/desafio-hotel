@@ -6,7 +6,6 @@ package br.com.jardel.desafio_hotel.infrastructure.persistence.jpa_repositories;
 
 import br.com.jardel.desafio_hotel.infrastructure.persistence.entities.HospedeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,11 +19,11 @@ public interface IHospedeJpaRepository extends JpaRepository<HospedeEntity, Long
 
     Optional<HospedeEntity> findByDocumento(String documento);
 
-    @Query("""
-        select h from HospedeEntity h
-        where lower(h.nome) like lower(concat('%', :termo, '%'))
-           or h.documento like concat('%', :termo, '%')
-           or h.telefone like concat('%', :termo, '%')
-    """)
-    List<HospedeEntity> buscarPorTermo(String termo);
+    boolean existsByDocumento(String documento);
+
+    List<HospedeEntity> findByNomeContainingIgnoreCaseOrDocumentoContainingOrTelefoneContaining(
+            String nome,
+            String documento,
+            String telefone
+    );
 }

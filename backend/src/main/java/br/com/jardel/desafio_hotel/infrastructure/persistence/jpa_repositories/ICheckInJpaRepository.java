@@ -21,6 +21,21 @@ public interface ICheckInJpaRepository extends JpaRepository<CheckInEntity, Long
 
     List<CheckInEntity> findByIdHospedeOrderByDataEntradaDesc(Long idHospede);
 
+    boolean existsByIdHospede(Long idHospede);
+
+    boolean existsByIdHospedeAndDataEntradaLessThanAndDataSaidaGreaterThan(
+            Long idHospede,
+            LocalDateTime novaSaida,
+            LocalDateTime novaEntrada
+    );
+
+    boolean existsByIdHospedeAndIdNotAndDataEntradaLessThanAndDataSaidaGreaterThan(
+            Long idHospede,
+            Long checkInId,
+            LocalDateTime novaSaida,
+            LocalDateTime novaEntrada
+    );
+
     @Query("""
         select c from CheckInEntity c
         where c.dataEntrada <= :agora and c.dataSaida >= :agora
@@ -34,21 +49,21 @@ public interface ICheckInJpaRepository extends JpaRepository<CheckInEntity, Long
         order by c.dataSaida desc
     """)
     List<CheckInEntity> listarAusentes(LocalDateTime agora);
- 
+
     @Query("""
-    select c from CheckInEntity c
-    where c.dataEntrada <= :agora and c.dataSaida > :agora
-    order by c.idHospede asc, c.dataSaida desc
+        select c from CheckInEntity c
+        where c.dataEntrada <= :agora and c.dataSaida > :agora
+        order by c.idHospede asc, c.dataSaida desc
     """)
     List<CheckInEntity> listarPresentesOrdenado(LocalDateTime agora);
 
     @Query("""
-    select c from CheckInEntity c
-    where c.dataSaida <= :agora
-    order by c.idHospede asc, c.dataSaida desc
+        select c from CheckInEntity c
+        where c.dataSaida <= :agora
+        order by c.idHospede asc, c.dataSaida desc
     """)
     List<CheckInEntity> listarAusentesOrdenado(LocalDateTime agora);
-    
+
     @Query(value = """
         select * from (
             select distinct on (guest_id) *
@@ -97,27 +112,4 @@ public interface ICheckInJpaRepository extends JpaRepository<CheckInEntity, Long
         where c.idHospede = :idHospede
     """)
     BigDecimal somarTotalPorHospede(@Param("idHospede") Long idHospede);
-    
-    @Query("""
-        select (count(c) > 0) from CheckInEntity c
-        where c.idHospede = :idHospede
-          and c.dataEntrada < :novaSaida
-          and c.dataSaida > :novaEntrada
-    """)
-    boolean existeSobreposicao(@Param("idHospede") Long idHospede,
-                               @Param("novaEntrada") LocalDateTime novaEntrada,
-                               @Param("novaSaida") LocalDateTime novaSaida);
-
-    @Query("""
-        select (count(c) > 0) from CheckInEntity c
-        where c.idHospede = :idHospede
-          and c.id <> :checkInId
-          and c.dataEntrada < :novaSaida
-          and c.dataSaida > :novaEntrada
-    """)
-    boolean existeSobreposicaoExcluindoId(@Param("idHospede") Long idHospede,
-                                          @Param("checkInId") Long checkInId,
-                                          @Param("novaEntrada") LocalDateTime novaEntrada,
-                                          @Param("novaSaida") LocalDateTime novaSaida);
-    
 }

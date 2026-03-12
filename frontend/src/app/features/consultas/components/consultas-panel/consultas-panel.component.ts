@@ -20,7 +20,7 @@ type Modo = 'presentes' | 'ausentes';
 export class ConsultasPanelComponent {
   modo: Modo = 'presentes';
   page = 0;
-  size = 10;
+  size = 20;
   sizeOptions = [20, 10, 5, 3];
   
   // radio group único
