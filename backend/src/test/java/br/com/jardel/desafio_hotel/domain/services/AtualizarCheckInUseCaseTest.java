@@ -10,7 +10,9 @@ import br.com.jardel.desafio_hotel.api.exceptions.ConflictException;
 import br.com.jardel.desafio_hotel.api.exceptions.NotFoundException;
 import br.com.jardel.desafio_hotel.domain.models.CheckIn;
 import br.com.jardel.desafio_hotel.test_support.FakeCheckInRepository;
+import br.com.jardel.desafio_hotel.test_support.FakeHospedeRepository;
 import br.com.jardel.desafio_hotel.application.use_cases.*;
+import br.com.jardel.desafio_hotel.application.validators.CheckInValidator;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,8 +29,9 @@ public class AtualizarCheckInUseCaseTest {
 
     private final FakeCheckInRepository checkInRepositorio = new FakeCheckInRepository(LocalDateTime.of(2026, 2, 7, 12, 0));
     private final ICalculadoraHospedagemService calculadora = new CalculadoraHospedagemService();
+    private final CheckInValidator checkInValidator = new CheckInValidator(new FakeHospedeRepository(), checkInRepositorio);
 
-    private final IAtualizarCheckInUseCase useCase = new AtualizarCheckInUseCase(checkInRepositorio, calculadora);
+    private final IAtualizarCheckInUseCase useCase = new AtualizarCheckInUseCase(checkInRepositorio, calculadora, checkInValidator);
 
     @Test
     void deveAtualizarCamposERecalcularTotal() {

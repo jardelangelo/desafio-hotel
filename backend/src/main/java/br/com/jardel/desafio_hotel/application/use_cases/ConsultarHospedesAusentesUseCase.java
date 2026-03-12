@@ -1,26 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.com.jardel.desafio_hotel.application.use_cases;
 
 import br.com.jardel.desafio_hotel.application.dtos.GastoHospedeDTO;
 import br.com.jardel.desafio_hotel.domain.models.CheckIn;
 import br.com.jardel.desafio_hotel.domain.models.Hospede;
-import br.com.jardel.desafio_hotel.domain.services.ICalculadoraHospedagemService;
 import br.com.jardel.desafio_hotel.domain.repositories.ICheckInRepository;
 import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
+import br.com.jardel.desafio_hotel.domain.services.ICalculadoraHospedagemService;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- *
- * @author jarde
- */
-
+@Component
 public class ConsultarHospedesAusentesUseCase implements IConsultarHospedesAusentesUseCase {
-    
+
     private final IHospedeRepository hospedeRepositorio;
     private final ICheckInRepository checkInRepositorio;
     private final ICalculadoraHospedagemService calculadora;
@@ -78,5 +71,4 @@ public class ConsultarHospedesAusentesUseCase implements IConsultarHospedesAusen
                 new CheckIn(c.id(), c.idHospede(), c.dataEntrada(), c.dataSaida(), c.adicionalVeiculo(), null)
         );
     }
-    
 }

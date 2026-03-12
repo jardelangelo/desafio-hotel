@@ -1,30 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.com.jardel.desafio_hotel.application.use_cases;
 
-import br.com.jardel.desafio_hotel.api.exceptions.NotFoundException;
 import br.com.jardel.desafio_hotel.api.dtos.AtualizarHospedeRequest;
+import br.com.jardel.desafio_hotel.api.exceptions.NotFoundException;
+import br.com.jardel.desafio_hotel.application.validators.HospedeValidator;
 import br.com.jardel.desafio_hotel.domain.models.Hospede;
 import br.com.jardel.desafio_hotel.domain.repositories.IHospedeRepository;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-/**
- *
- * @author jarde
- */
-
+@Component
 public class AtualizarHospedeUseCase implements IAtualizarHospedeUseCase {
 
     private final IHospedeRepository hospedeRepositorio;
+    private final HospedeValidator hospedeValidator;
 
-    public AtualizarHospedeUseCase(IHospedeRepository hospedeRepositorio) {
+    public AtualizarHospedeUseCase(IHospedeRepository hospedeRepositorio,
+                                   HospedeValidator hospedeValidator) {
         this.hospedeRepositorio = hospedeRepositorio;
+        this.hospedeValidator = hospedeValidator;
     }
 
     @Override
+    @Transactional
     public Hospede execute(AtualizarHospedeRequest request) {
-        if (request == null || request.id() == null) throw new IllegalArgumentException("ID do hóspede é obrigatório.");
+        hospedeValidator.validarAtualizacao(request);
 
         Hospede atual = hospedeRepositorio.buscarPorId(request.id())
                 .orElseThrow(() -> new NotFoundException("Hóspede não encontrado."));
